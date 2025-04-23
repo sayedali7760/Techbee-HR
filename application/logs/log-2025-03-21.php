@@ -1,0 +1,4 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+
+ERROR - 2025-03-21 12:19:50 --> Query error: Unknown column 'wallet_address' in 'field list' - Invalid query: INSERT INTO `transactions` (`user_id`, `type`, `method`, `account_id`, `currency`, `amount`, `status`, `status_finished`, `comment`, `wallet_address`, `nexus_status`) VALUES ('70000', 'deposit', 'nexus', '1105462', 'USD', 0, 'pending', 'approved', 'Deposit [nexus]', '', '')
+ERROR - 2025-03-21 12:20:09 --> Query error: Unknown column 'wallet_address' in 'field list' - Invalid query: INSERT INTO `transactions` (`user_id`, `type`, `method`, `account_id`, `currency`, `amount`, `status`, `status_finished`, `comment`, `wallet_address`, `nexus_status`) VALUES ('70000', 'deposit', 'nexus', '1105462', 'USD', 0, 'pending', 'approved', 'Deposit [nexus]', '', '')
