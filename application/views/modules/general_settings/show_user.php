@@ -101,6 +101,7 @@
                                 <th class="text-strat min-w-75px">Role</th>
                                 <th class="text-start min-w-75px">Firstname</th>
                                 <th class="text-start min-w-75px">Lastname</th>
+                                <th class="text-start min-w-75px">Company</th>
                                 <th class="text-start min-w-75px">Created</th>
                                 <th class="text-start min-w-75px">Varification</th>
                                 <th class="text-start min-w-75px">Status</th>
@@ -123,6 +124,7 @@
                                     <td class="text-start pe-0"><?php echo $user->description; ?></td>
                                     <td class="text-start pe-0"><b><a href="javascript:void(0);" style="color: inherit;" onclick="edit_user('<?php echo $user->id; ?>')"><?php echo $user->fname; ?></a></b></td>
                                     <td class="text-start pe-0"><b><a href="javascript:void(0);" style="color: inherit;" onclick="edit_user('<?php echo $user->id; ?>')"><?php echo $user->lname; ?></a></b></td>
+                                    <td class="text-start pe-0"><b><a href="javascript:void(0);" style="color: inherit;"><?php echo $user->company_name; ?></a></b></td>
                                     <td class="text-start pe-0"><?php echo date('d/m/Y', strtotime($user->created_on)); ?>
                                     <td class="text-start pe-0"><span class="badge badge-light-success">Verified</span></td>
                                     <td class="text-start pe-0">

@@ -14,7 +14,7 @@ class User_management extends CI_Controller
             redirect('error');
         }
         $this->load->model('general_settings/Usermanagement_model', 'UMModel');
-        $this->load->model('general_settings/Client_model', 'CModel');
+        $this->load->model('general_settings/Client_crm_model', 'CModel');
     }
 
 
@@ -30,8 +30,8 @@ class User_management extends CI_Controller
 
     public function client_add()
     {
-        $data['title'] = 'Client';
-        $data['subtitle'] = 'Add Client';
+        $data['title'] = 'Staff';
+        $data['subtitle'] = 'Add Staff';
         $data['countries'] = $this->CModel->get_countries();
         $data['user_role'] = $this->UMModel->get_user_role();
         $data['staff_details'] = $this->CModel->get_client_staff_details();
@@ -46,7 +46,11 @@ class User_management extends CI_Controller
         $phone = $this->input->post('phone');
         $country = $this->input->post('country');
         $password = md5($this->input->post('password'));
-        $manager = $this->input->post('manager');
+        $manager = $this->session->userdata('id');
+        $nationality = $this->input->post('nationality');
+        $designation = $this->input->post('designation');
+        $salary = $this->input->post('salary');
+        $eid = $this->input->post('eid');
 
         $uploadPath = 'uploads';
         $uploadfile = 'avatar';
@@ -54,12 +58,21 @@ class User_management extends CI_Controller
         $filename = $this->fileUpload($uploadPath, $uploadfile);
         $avatar = $filename;
 
-        $uuid_data = random_bytes(16);
-        $uuid_data[6] = chr(ord($uuid_data[6]) & 0x0f | 0x40); // Set version 4
-        $uuid_data[8] = chr(ord($uuid_data[8]) & 0x3f | 0x80); // Set variant
-        $uuid =  vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($uuid_data), 4));
 
-        $data = array('name' => $name, 'uid' => $uuid, 'country' => $country, 'phone' => $phone, 'email' => $email, 'file' => $avatar, 'manager' => $manager, 'password' => $password);
+
+        $data = array(
+            'name' => $name,
+            'country' => $country,
+            'phone' => $phone,
+            'email' => $email,
+            'file' => $avatar,
+            'manager' => $manager,
+            'password' => $password,
+            'nationality' => $nationality,
+            'designation' => $designation,
+            'salary' => $salary,
+            'eid' => $eid
+        );
         $qry = $this->db->get_where('clients', "email like '$email'");
         if ($qry->num_rows() > 0) {
             echo json_encode(array('status' => 0, 'view' => $this->load->view('modules/general_settings/add_client', $data, TRUE)));
@@ -76,8 +89,8 @@ class User_management extends CI_Controller
 
     public function client_list()
     {
-        $data['title'] = 'Client';
-        $data['subtitle'] = 'Client List';
+        $data['title'] = 'Staff';
+        $data['subtitle'] = 'Staff List';
         $data['client_data'] = $this->CModel->get_details();
         $data['template'] = 'modules/general_settings/show_client';
         $this->load->view('template/dashboard_template', $data);
@@ -96,7 +109,6 @@ class User_management extends CI_Controller
     }
     public function edit_client()
     {
-        // if ($this->input->is_ajax_request() == 1) {
         $onload =  $this->input->post('load');
         $client_id = $this->input->post('client_id');
 
@@ -114,9 +126,6 @@ class User_management extends CI_Controller
             echo json_encode(array('status' => 1, 'message' => 'Data Loaded', 'view' => $view));
             return;
         }
-        // } else {
-        //     $this->load->view(ERROR_500);
-        // }
     }
 
     public function user_list()
@@ -135,15 +144,17 @@ class User_management extends CI_Controller
         $email = $this->input->post('email');
         $position = $this->input->post('position');
         $password = md5($this->input->post('password'));
-
+        $company_name = $this->input->post('company_name');
         $uploadPath = 'uploads';
+        $uploadPath_company = 'company_logo';
         $uploadfile = 'avatar';
-        $images = '';
+        $company_logo = 'com_logo';
         $filename = $this->fileUpload($uploadPath, $uploadfile);
         $avatar = $filename;
+        $company_logo_name = $this->fileUpload($uploadPath_company, $company_logo);
 
 
-        $data = array('fname' => $fname, 'lname' => $lname, 'email' => $email, 'file' => $avatar, 'position' => $position, 'password' => $password);
+        $data = array('fname' => $fname, 'lname' => $lname, 'email' => $email, 'company_name' => $company_name, 'company_logo' => $company_logo_name, 'file' => $avatar, 'position' => $position, 'password' => $password);
         $qry = $this->db->get_where('user_details', "email like '$email'");
         if ($qry->num_rows() > 0) {
             echo json_encode(array('status' => 0, 'view' => $this->load->view('modules/general_settings/add_user', $data, TRUE)));
@@ -204,7 +215,11 @@ class User_management extends CI_Controller
         $country = $this->input->post('country');
         $phone = $this->input->post('phone');
         $not_enrypted_pass = $this->input->post('password');
-        $manager = $this->input->post('manager');
+        $manager = $this->session->userdata('id');
+        $nationality = $this->input->post('nationality');
+        $designation = $this->input->post('designation');
+        $salary = $this->input->post('salary');
+        $eid = $this->input->post('eid');
 
 
         $uploadPath = 'uploads';
@@ -213,7 +228,17 @@ class User_management extends CI_Controller
         $filename = $this->fileUpload($uploadPath, $uploadfile);
         $avatar = $filename;
 
-        $data = array('name' => $name, 'email' => $email, 'country' => $country, 'phone' => $phone, 'manager' => $manager);
+        $data = array(
+            'name' => $name,
+            'email' => $email,
+            'country' => $country,
+            'phone' => $phone,
+            'manager' => $manager,
+            'nationality' => $nationality,
+            'designation' => $designation,
+            'salary' => $salary,
+            'eid' => $eid
+        );
         $qry = $this->db->get_where('clients', "email LIKE '$email' AND id != '$client_id'");
         if ($not_enrypted_pass != '') {
             $password = md5($not_enrypted_pass);
@@ -243,14 +268,20 @@ class User_management extends CI_Controller
         $position = $this->input->post('position');
         $not_enrypted_pass = $this->input->post('password');
         $password = md5($not_enrypted_pass);
+        $company_name = $this->input->post('company_name');
+
+
 
         $uploadPath = 'uploads';
         $uploadfile = 'avatar';
-        $images = '';
+        $uploadfile_c = 'com_logo';
+
         $filename = $this->fileUpload($uploadPath, $uploadfile);
         $avatar = $filename;
+        $filename_c = $this->fileUpload($uploadPath, $uploadfile_c);
+        $company_logo = $filename_c;
 
-        $data = array('fname' => $fname, 'lname' => $lname, 'email' => $email);
+        $data = array('fname' => $fname, 'lname' => $lname, 'email' => $email, 'company_name' => $company_name);
         if ($position != '') {
             $data['position'] = $position;
         }
@@ -259,6 +290,9 @@ class User_management extends CI_Controller
         }
         if ($avatar != '') {
             $data['file'] = $avatar;
+        }
+        if ($company_logo != '') {
+            $data['company_logo'] = $company_logo;
         }
         if ($this->UMModel->update($data, $user_id)) {
             echo json_encode(array('status' => 1, 'view' => $this->load->view('modules/general_settings/edit_user', $data, TRUE)));

@@ -102,8 +102,8 @@
                                 <th class="text-strat min-w-75px">Email</th>
                                 <th class="text-strat min-w-75px">Phone</th>
                                 <th class="text-strat min-w-75px">Manager</th>
-                                <th class="text-start min-w-75px">Created</th>
-                                <th class="text-start min-w-75px">Verification</th>
+                                <th class="text-strat min-w-75px">Company</th>
+                                <th class="text-start min-w-75px">Salary</th>
                                 <th class="text-start min-w-75px">Status</th>
                                 <th class="text-start min-w-100px">Action</th>
                             </tr>
@@ -123,14 +123,9 @@
                                     <td class="text-start pe-0"><?php echo $client->email; ?></td>
                                     <td class="text-start pe-0"><?php echo $client->phone; ?></td>
                                     <td class="text-start pe-0"><?php echo $client->manager; ?></td>
-                                    <td class="text-start pe-0"><?php echo date('d/m/Y', strtotime($client->created)); ?>
-                                    <td class="text-start pe-0">
-                                        <?php if ($client->account_verify == 1) { ?>
-                                            <span class="badge badge-light-success">Verified</span>
-                                        <?php } else { ?>
-                                            <span class="badge badge-light-danger">Not Verified</span>
-                                        <?php } ?>
-                                    </td>
+                                    <td class="text-start pe-0"><?php echo $client->manager_company; ?></td>
+                                    <td class="text-start pe-0"><?php echo $client->salary; ?>
+
                                     <td class="text-start pe-0">
                                         <?php if ($client->is_active == 1) {
                                             $value = 'checked';
@@ -206,7 +201,7 @@
                     if (status == 0) {
                         Swal.fire({
                             title: 'Success',
-                            text: 'User status deactivated.',
+                            text: 'Staff status deactivated.',
                             icon: 'success',
                             confirmButtonText: 'OK'
                         }).then((result) => {
@@ -217,7 +212,7 @@
                     } else if (status == 1) {
                         Swal.fire({
                             title: 'Success',
-                            text: 'User status activated.',
+                            text: 'Staff status activated.',
                             icon: 'success',
                             confirmButtonText: 'OK'
                         }).then((result) => {

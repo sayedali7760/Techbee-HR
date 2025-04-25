@@ -119,8 +119,8 @@
 
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="required form-label">Company Logo</label>
-                                            <input type="file" class="form-control files" name="files_pass[]" id="files_pass">
-                                            <p style="font-size: 11px;">(file format-jpg, jpeg, png)</p>
+                                            <input type="file" class="form-control files" name="com_logo[]" id="com_logo">
+                                            <p style="font-size: 11px;">(file format-jpg, jpeg, png)(1333*277)</p>
                                         </div>
 
                                         <div class="fv-row w-100 flex-md-root">

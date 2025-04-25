@@ -18,7 +18,7 @@ class Client_crm extends CI_Controller
         $data['title'] = 'Client';
         $data['subtitle'] = 'My Profile';
         $id = $this->session->userdata['id'];
-        $data['user_data'] = $this->CModel->get_details($id);
+        $data['user_data'] = $this->CModel->get_client_details($id);
         $data['documents_data'] = $this->CModel->get_documents_details($id);
         $count_query = $this->db->get_where('documents', "client_id=$id");
         $data['count_qry'] = $count_query->num_rows();
@@ -265,7 +265,29 @@ class Client_crm extends CI_Controller
         }
         // }
     }
+    public function show_client()
+    {
 
+        $data['title'] = 'Client';
+        $data['subtitle'] = 'Client List';
+        $data['details_data'] = $this->CModel->get_details($data);
+        $data['template'] = 'modules/clients/show_client';
+        $this->load->view('template/dashboard_template', $data);
+    }
+
+
+    public function change_status()
+    {
+        $client_id = $this->input->post('id');
+        $status = $this->input->post('status');
+        $data = array('is_active' => $status);
+        if ($this->CModel->change_status($data, $client_id)) {
+            echo json_encode(array('status' => 1));
+            return;
+        } else {
+            return false;
+        }
+    }
     public function approve_bank_data()
     {
         // if ($this->input->is_ajax_request() == 1) {
