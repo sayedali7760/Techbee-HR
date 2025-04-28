@@ -21,7 +21,7 @@
 						<div class="row mb-5 mb-xl-8 g-5 g-xl-8">
 							<div class="col-6">
 								<div class="card card-stretch">
-									<a href="javascript:void(0);" id="live_button_a" class="btn btn-flex btn-text-gray-800 btn-icon-primary btn-active-color-primary bg-body flex-column justfiy-content-start align-items-start text-start w-100 p-10">
+									<a href="<?php echo base_url(); ?>task/assigned-tasks" id="live_button_a" class="btn btn-flex btn-text-gray-800 btn-icon-primary btn-active-color-primary bg-body flex-column justfiy-content-start align-items-start text-start w-100 p-10">
 										<span class="svg-icon svg-icon-3x mb-5">
 											<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
 												<path opacity="0.3" d="M12.5 22C11.9 22 11.5 21.6 11.5 21V3C11.5 2.4 11.9 2 12.5 2C13.1 2 13.5 2.4 13.5 3V21C13.5 21.6 13.1 22 12.5 22Z" fill="currentColor" />

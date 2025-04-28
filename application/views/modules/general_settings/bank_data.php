@@ -6,7 +6,7 @@
             <div class="row g-5"> <!-- Ensure proper row usage -->
 
                 <!-- Left Column -->
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <?php echo form_open_multipart('bank/add_data', array('id' => 'data_save', 'role' => 'form', 'class' => 'form')); ?>
                     <div class="tab-content">
                         <div class="tab-pane fade show active" id="kt_ecommerce_add_product_general" role="tab-panel">
@@ -18,35 +18,35 @@
                                 </div>
                                 <div class="card-body pt-0">
                                     <div class="row g-3">
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <label class="required form-label">Beneficiary Name</label>
                                             <input type="text" id="name" name="name" class="mb-5 form-control make-star" placeholder="Benificiary name">
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <label class="required form-label">Bank Name</label>
                                             <input type="text" id="bname" name="bname" class="mb-5 form-control make-star" placeholder="Bank name">
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <label class="required form-label">Bank Account Number</label>
                                             <input type="text" id="acc_no" name="acc_no" class="mb-5 form-control make-star" placeholder="Acc No">
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <label class="required form-label">IBAN</label>
                                             <input type="text" id="iban" name="iban" class="mb-5 form-control make-star" placeholder="IBAN">
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <label class="required form-label">SWIFT Code</label>
                                             <input type="text" id="swift" name="swift" class="mb-5 form-control make-star" placeholder="SWIFT">
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <label class="required form-label">Bank Address</label>
                                             <input type="text" id="addr" name="addr" class="mb-5 form-control make-star" placeholder="Bank Address">
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <label class="required form-label">Branch</label>
                                             <input type="text" id="branch" name="branch" class="mb-5 form-control make-star" placeholder="Branch">
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <label class="required form-label">Statement</label>
                                             <input type="file" class="form-control files" name="files_statement[]" id="files_statement">
                                         </div>
@@ -71,74 +71,7 @@
 
 
                 <!-- Right Column -->
-                <div class="col-md-6">
-                    <?php echo form_open_multipart('bank/add_wallet', array('id' => 'wallet_save', 'role' => 'form', 'class' => 'form')); ?>
-                    <div class="tab-content">
-                        <div class="tab-pane fade show active" id="kt_ecommerce_add_product_general_2" role="tab-panel">
-                            <div class="card card-flush py-4">
-                                <div class="card-header">
-                                    <div class="card-title">
-                                        <h2>Wallet Address</h2>
-                                    </div>
-                                </div>
-                                <?php
-                                if (!isset($wallet_data)) {
-                                ?>
-                                    <div class="card-body pt-0">
-                                        <div class="row g-3">
-                                            <div class="col-md-6">
-                                                <label class="required form-label">Wallet id:</label>
-                                                <input type="text" id="wallet" maxlength="34" name="wallet" class="mb-5 form-control make-star" placeholder="Wallet Address">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label class="required form-label">Type</label>
-                                                <select class="form-select mb-5" data-control="select2"
-                                                    data-placeholder="Select an option"
-                                                    name="wal_type" id="wal_type">
-                                                    <option value="1">TRC-20</option>
-                                                    <option value="2">ERC-20</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="d-flex justify-content-end">
-                                            <a href="" class="btn btn-light me-5">Cancel</a>
-                                            <a id="actual_submit" href="javascript:void(0);" class="btn btn-primary submit_butt" title="Save Changes"
-                                                onclick="submit_wallet()">Submit</a>
-                                            <a id="loader_submit" style="display:none;" href="javascript:void(0);" class="btn btn-primary" data-kt-indicator="on">
-                                                <span class="indicator-label">Submit</span>
-                                                <span class="indicator-progress">Please wait...
-                                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                <?php } else {
-                                ?>
-                                    <div class="card-body pt-0">
-                                        <div class="gap-5 wallet_div">
-                                            <div class="alert alert-success d-flex align-items-center p-5 mb-10">
-                                                <!--begin::Svg Icon | path: icons/duotune/general/gen048.svg-->
-                                                <span class="svg-icon svg-icon-2hx svg-icon-success me-4">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                        <path opacity="0.3" d="M20.5543 4.37824L12.1798 2.02473C12.0626 1.99176 11.9376 1.99176 11.8203 2.02473L3.44572 4.37824C3.18118 4.45258 3 4.6807 3 4.93945V13.569C3 14.6914 3.48509 15.8404 4.4417 16.984C5.17231 17.8575 6.18314 18.7345 7.446 19.5909C9.56752 21.0295 11.6566 21.912 11.7445 21.9488C11.8258 21.9829 11.9129 22 12.0001 22C12.0872 22 12.1744 21.983 12.2557 21.9488C12.3435 21.912 14.4326 21.0295 16.5541 19.5909C17.8169 18.7345 18.8277 17.8575 19.5584 16.984C20.515 15.8404 21 14.6914 21 13.569V4.93945C21 4.6807 20.8189 4.45258 20.5543 4.37824Z" fill="currentColor"></path>
-                                                        <path d="M10.5606 11.3042L9.57283 10.3018C9.28174 10.0065 8.80522 10.0065 8.51412 10.3018C8.22897 10.5912 8.22897 11.0559 8.51412 11.3452L10.4182 13.2773C10.8099 13.6747 11.451 13.6747 11.8427 13.2773L15.4859 9.58051C15.771 9.29117 15.771 8.82648 15.4859 8.53714C15.1948 8.24176 14.7183 8.24176 14.4272 8.53714L11.7002 11.3042C11.3869 11.6221 10.874 11.6221 10.5606 11.3042Z" fill="currentColor"></path>
-                                                    </svg>
-                                                </span>
-                                                <!--end::Svg Icon-->
-                                                <div class="d-flex flex-column">
-                                                    <h4 class="mb-1 text-success">Verified Wallet Address(<?= isset($wallet_data['type']) && $wallet_data['type'] == 2 ? 'ERC-20' : 'TRC-20' ?>
-                                                        ) : <span><?= isset($wallet_data['wallet_address']) ? $wallet_data['wallet_address'] : '' ?></span></h4>
-                                                    <span>This confirms that your account verification is complete. You can now create live accounts for real transactions and demo accounts for practice. This feature is available on financial platforms, trading applications, or services that support both test and real environments.</span>
-                                                </div>
-                                            </div>
 
-                                        </div>
-                                    </div>
-                                <?php } ?>
-                            </div>
-                        </div>
-                    </div>
-                    <?php echo form_close(); ?>
-                </div>
 
             </div>
         </div>
@@ -169,7 +102,7 @@
                                                     <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                                                     <g id="SVGRepo_iconCarrier">
                                                         <title>bank_fill</title>
-                                                        <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                                             <g id="Building" transform="translate(-192.000000, -48.000000)">
                                                                 <g id="bank_fill" transform="translate(192.000000, 48.000000)">
                                                                     <path d="M24,0 L24,24 L0,24 L0,0 L24,0 Z M12.5934901,23.257841 L12.5819402,23.2595131 L12.5108777,23.2950439 L12.4918791,23.2987469 L12.4918791,23.2987469 L12.4767152,23.2950439 L12.4056548,23.2595131 C12.3958229,23.2563662 12.3870493,23.2590235 12.3821421,23.2649074 L12.3780323,23.275831 L12.360941,23.7031097 L12.3658947,23.7234994 L12.3769048,23.7357139 L12.4804777,23.8096931 L12.4953491,23.8136134 L12.4953491,23.8136134 L12.5071152,23.8096931 L12.6106902,23.7357139 L12.6232938,23.7196733 L12.6232938,23.7196733 L12.6266527,23.7031097 L12.609561,23.275831 C12.6075724,23.2657013 12.6010112,23.2592993 12.5934901,23.257841 L12.5934901,23.257841 Z M12.8583906,23.1452862 L12.8445485,23.1473072 L12.6598443,23.2396597 L12.6498822,23.2499052 L12.6498822,23.2499052 L12.6471943,23.2611114 L12.6650943,23.6906389 L12.6699349,23.7034178 L12.6699349,23.7034178 L12.678386,23.7104931 L12.8793402,23.8032389 C12.8914285,23.8068999 12.9022333,23.8029875 12.9078286,23.7952264 L12.9118235,23.7811639 L12.8776777,23.1665331 C12.8752882,23.1545897 12.8674102,23.1470016 12.8583906,23.1452862 L12.8583906,23.1452862 Z M12.1430473,23.1473072 C12.1332178,23.1423925 12.1221763,23.1452606 12.1156365,23.1525954 L12.1099173,23.1665331 L12.0757714,23.7811639 C12.0751323,23.7926639 12.0828099,23.8018602 12.0926481,23.8045676 L12.108256,23.8032389 L12.3092106,23.7104931 L12.3186497,23.7024347 L12.3186497,23.7024347 L12.3225043,23.6906389 L12.340401,23.2611114 L12.337245,23.2485176 L12.337245,23.2485176 L12.3277531,23.2396597 L12.1430473,23.1473072 Z" id="MingCute" fill-rule="nonzero"> </path>

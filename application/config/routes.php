@@ -95,6 +95,20 @@ $route['client-crm/activate-client'] = 'settings/Client_crm/activate_client';
 
 
 $route['client/refund'] = 'settings/Payment/refund';
+$route['admin/refund'] = 'settings/Payment/admin_refund';
+$route['client/refund-save'] = 'settings/Payment/refund_save';
+$route['client/applied-refund'] = 'settings/Payment/applied_refund';
+$route['client/approve-refund'] = 'settings/Payment/approve_refund';
+$route['client/reject-refund'] = 'settings/Payment/reject_refund';
+$route['client/view-refund'] = 'settings/Payment/view_refund';
+
+$route['task/scheule-task'] = 'settings/Task/schedule_task';
+$route['task/scheule-task-save'] = 'settings/Task/schedule_task_save';
+$route['task/scheuled-tasks'] = 'settings/Task/scheduled_tasks';
+$route['task/assigned-tasks'] = 'settings/Task/assigned_tasks';
+$route['task/change_status'] = 'settings/Task/change_status';
+$route['task/view-task'] = 'settings/Task/view_task';
+
 
 $route['client/my-data'] = 'settings/Client_crm/my_data';
 $route['client/bdata-save'] = 'settings/Client_crm/bank_data';

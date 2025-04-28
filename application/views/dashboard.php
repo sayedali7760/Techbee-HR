@@ -17,7 +17,7 @@
 									<path d="M13 13.9189C13 12.2189 14.3 10.9189 16 10.9189H21V7.91895C21 6.81895 20.1 5.91895 19 5.91895H3C2.4 5.91895 2 6.31895 2 6.91895V20.9189C2 21.5189 2.4 21.9189 3 21.9189H19C20.1 21.9189 21 21.0189 21 19.9189V16.9189H16C14.3 16.9189 13 15.6189 13 13.9189Z" fill="currentColor" />
 								</svg></span>
 							<!--end::Svg Icon-->
-							<div class="text-gray-900 fw-bolder fs-2 mb-2 mt-5">Total Deposits | <?php echo number_format($deposit_total['total_amount'], 2); ?></div>
+							<div class="text-gray-900 fw-bolder fs-2 mb-2 mt-5">Total Deposits | <?php echo number_format(0, 2); ?></div>
 							<div class="fw-bold text-gray-400">Total deposits of all time (in USD)</div>
 						</div>
 						<!--end::Body-->
@@ -37,7 +37,7 @@
 								</svg>
 							</span>
 							<!--end::Svg Icon-->
-							<div class="text-white fw-bolder fs-2 mb-2 mt-5">Total Withdraw | <?php echo number_format($withdrawal_total['total_amount'], 2); ?></div>
+							<div class="text-white fw-bolder fs-2 mb-2 mt-5">Total Withdraw | <?php echo number_format(0, 2); ?></div>
 							<div class="fw-bold text-white">Total deposits of all time (in USD)</div>
 						</div>
 						<!--end::Body-->
@@ -57,10 +57,8 @@
 								</svg>
 							</span>
 							<!--end::Svg Icon-->
-							<?php
-							$net_total = ($deposit_total['total_amount'] - $withdrawal_total['total_amount']);
-							?>
-							<div class="text-gray-100 fw-bolder fs-2 mb-2 mt-5">Net Deposit | <?php echo number_format($net_total, 2); ?></div>
+
+							<div class="text-gray-100 fw-bolder fs-2 mb-2 mt-5">Net Deposit | <?php echo number_format(0, 2); ?></div>
 							<div class="fw-bold text-gray-100">Total deposits of all time (in USD)</div>
 						</div>
 						<!--end::Body-->
@@ -85,38 +83,7 @@
 						<!--end::Header-->
 						<!--begin::Body-->
 						<div class="card-body pt-2">
-							<?php foreach ($transaction_details as $history) { ?>
-								<div class="d-flex align-items-center mb-8">
-									<?php if ($history->type == 'withdraw') { ?>
-										<span class="bullet bullet-vertical h-40px bg-danger"></span>
-									<?php } else { ?>
-										<span class="bullet bullet-vertical h-40px bg-success"></span>
-									<?php } ?>
-									<div class="form-check form-check-custom form-check-solid mx-5">
-										<?php if ($history->type == 'withdraw') { ?>
-											<span class="svg-icon svg-icon-danger svg-icon-2hx"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-													<path d="M22 7H2V11H22V7Z" fill="currentColor" />
-													<path opacity="0.3" d="M21 19H3C2.4 19 2 18.6 2 18V6C2 5.4 2.4 5 3 5H21C21.6 5 22 5.4 22 6V18C22 18.6 21.6 19 21 19ZM14 14C14 13.4 13.6 13 13 13H5C4.4 13 4 13.4 4 14C4 14.6 4.4 15 5 15H13C13.6 15 14 14.6 14 14ZM16 15.5C16 16.3 16.7 17 17.5 17H18.5C19.3 17 20 16.3 20 15.5C20 14.7 19.3 14 18.5 14H17.5C16.7 14 16 14.7 16 15.5Z" fill="currentColor" />
-												</svg></span>
-										<?php } else { ?>
-											<span class="svg-icon svg-icon-success svg-icon-2hx"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-													<path d="M22 7H2V11H22V7Z" fill="currentColor" />
-													<path opacity="0.3" d="M21 19H3C2.4 19 2 18.6 2 18V6C2 5.4 2.4 5 3 5H21C21.6 5 22 5.4 22 6V18C22 18.6 21.6 19 21 19ZM14 14C14 13.4 13.6 13 13 13H5C4.4 13 4 13.4 4 14C4 14.6 4.4 15 5 15H13C13.6 15 14 14.6 14 14ZM16 15.5C16 16.3 16.7 17 17.5 17H18.5C19.3 17 20 16.3 20 15.5C20 14.7 19.3 14 18.5 14H17.5C16.7 14 16 14.7 16 15.5Z" fill="currentColor" />
-												</svg></span>
-										<?php } ?>
 
-									</div>
-									<div class="flex-grow-1">
-										<a href="#" class="text-gray-800 text-hover-primary fw-bolder fs-6"><?php echo $history->name; ?></a>
-										<span class="text-muted fw-bold d-block"><?php echo date('d/m/Y H:i:s', strtotime($history->date_created)); ?></span>
-									</div>
-									<?php if ($history->type == 'withdraw') { ?>
-										<span class="badge badge-light-danger fs-8 fw-bolder"><?php echo $history->currency; ?> <?php echo $history->amount; ?></span>
-									<?php } else { ?>
-										<span class="badge badge-light-success fs-8 fw-bolder"><?php echo $history->currency; ?> <?php echo $history->amount; ?></span>
-									<?php } ?>
-								</div>
-							<?php } ?>
 						</div>
 						<!--end::Body-->
 					</div>
