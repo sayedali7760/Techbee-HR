@@ -330,7 +330,7 @@ License: For each use you must have a valid license purchased only from above li
                     <div class="header-brand">
                         <!--begin::Logo-->
                         <a href="<?php echo base_url(); ?>home">
-                            <img alt="Logo" src="<?php echo base_url(); ?>assets/media/logos/smart-logo.png"
+                            <img alt="Logo" src="<?php echo base_url(); ?>uploads/<?php echo $this->session->userdata('company_logo'); ?>"
                                 class="h-25px h-lg-25px" />
                         </a>
                         <!--end::Logo-->
@@ -4111,6 +4111,7 @@ License: For each use you must have a valid license purchased only from above li
     <script src="<?php echo base_url(); ?>assets/js/custom/utilities/modals/users-search.js"></script>
     <script src="<?php echo base_url(); ?>assets/plugins/custom/cookiealert/cookiealert.bundle.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/custom/apps/ecommerce/sales/save-order.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/custom/documentation/forms/daterangepicker.js"></script>
 
 
     <script>

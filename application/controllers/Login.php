@@ -38,11 +38,12 @@ class Login extends CI_Controller
         $password = md5($this->input->post('password'));
 
         if ($position == 1) {
-            $qr = $this->db->select('C.*')
+            $qr = $this->db->select('C.*,U.company_logo')
                 ->from('clients as C')
                 ->where('C.email', $username)
                 ->where('C.password', $password)
                 ->where('C.is_active', 1)
+                ->join('user_details as U', 'U.id = C.manager', 'left')
                 ->get();
         } else {
             $qr = $this->db->select('U.*,R.role_id,R.description')

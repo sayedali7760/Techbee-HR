@@ -79,14 +79,14 @@
                                     <div class="fv-row w-100 flex-md-root">
                                         <label class="required form-label">Password</label>
                                         <input type="hidden" name="client_id" id="client_id" value="<?php echo $user_data['id']; ?>">
-                                        <input type="text" id="password" maxlength="15" name="password"
-                                            class="mb-5 form-control make-star" id="" placeholder="Password">
+                                        <input type="text" id="password_field" maxlength="15" name="password_field"
+                                            class="mb-5 form-control make-star" placeholder="Password">
                                     </div>
 
                                     <div class="fv-row w-100 flex-md-root">
                                         <label class="required form-label">Confirm Password</label>
                                         <input type="text" id="con_password" maxlength="15" name="con_password"
-                                            class="form-control make-star mb-5" id="" placeholder="Confirm Password">
+                                            class="form-control make-star mb-5" placeholder="Confirm Password">
                                     </div>
                                     <div class="fv-row w-100 flex-md-root">
                                         <label class="form-label">&nbsp;</label>
@@ -434,7 +434,7 @@
     function update_data() {
         $("#loader").show();
         var ops_url = baseurl + 'client-crm/update-password';
-        var password = $('#password').val();
+        var password = $('#password_field').val();
         var confirm_password = $('#con_password').val();
         if (password != '') {
             if (password.length < 3) {
@@ -473,15 +473,14 @@
             $("#loader").hide();
             return false;
         }
+
         $.ajax({
             type: "POST",
             cache: false,
-            async: true,
+            async: false,
             url: ops_url,
-            processData: false,
-            contentType: false,
             data: {
-                password: password
+                "password": password,
             },
             success: function(result) {
                 $("#loader").hide();

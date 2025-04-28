@@ -106,21 +106,47 @@
 
                             </div>
                             <div class="d-flex flex-wrap gap-5">
+
                                 <div class="fv-row w-100 flex-md-root">
-                                    <label class="form-label">Manager</label>
-                                    <select class="form-select" data-placeholder="Select an option" id="manager" name="manager">
-                                        <?php foreach ($staff_details as $staff) { ?>
-                                            <option value="<?php echo $staff->id; ?>"><?php echo $staff->fname; ?></option>
-                                        <?php } ?>
-                                    </select>
+                                    <label class="required form-label">Nationality</label>
+                                    <input type="text" id="nationality" maxlength="50" name="nationality"
+                                        class="form-control make-star mb-5"
+                                        placeholder="Nationality" value="<?php echo $client_data['nationality']; ?>">
                                 </div>
+
+
+                                <div class="fv-row w-100 flex-md-root">
+                                    <label class="required form-label">Designation</label>
+                                    <input type="text" id="designation" maxlength="50" name="designation"
+                                        class="form-control make-star mb-5"
+                                        placeholder="Designation" value="<?php echo $client_data['designation']; ?>">
+                                </div>
+
+                                <div class="fv-row w-100 flex-md-root">
+                                    <label class="required form-label">Salary</label>
+                                    <input type="text" maxlength="10" name="salary"
+                                        class="form-control make-star mb-5 numeric" id="salary"
+                                        placeholder="Salary" value="<?php echo $client_data['salary']; ?>">
+                                </div>
+
+                            </div>
+                            <div class="d-flex flex-wrap gap-5">
+
+                                <div class="fv-row w-100 flex-md-root">
+                                    <label class="required form-label">Emirates ID</label>
+                                    <input type="text" maxlength="50" name="eid"
+                                        class="form-control make-star mb-5" id="eid"
+                                        placeholder="Emirated ID" value="<?php echo $client_data['eid']; ?>">
+                                </div>
+
+
                                 <div class="fv-row w-100 flex-md-root">
 
                                 </div>
+
                                 <div class="fv-row w-100 flex-md-root">
 
                                 </div>
-
 
                             </div>
                             <div class="d-flex justify-content-end">
@@ -468,7 +494,10 @@
         var con_password = $('#con_password').val();
         var email = $('#email').val();
         var phone = $('#phone').val();
-        var manager = $('#manager').val();
+        var nationality = $('#nationality').val();
+        var designation = $('#designation').val();
+        var salary = $('#salary').val();
+        var eid = $('#eid').val();
 
         if (name == "") {
             Swal.fire({
@@ -543,16 +572,57 @@
                 $("#loader_submit").hide();
                 return false;
             }
-            if (manager == '') {
+            if (nationality == "") {
                 Swal.fire({
                     icon: 'info',
                     title: '',
-                    text: 'Manager is required.'
+                    text: 'Nationality is required.'
                 });
                 $("#actual_submit").show();
                 $("#loader_submit").hide();
                 return false;
             }
+            if (designation == "") {
+                Swal.fire({
+                    icon: 'info',
+                    title: '',
+                    text: 'Designation is required.'
+                });
+                $("#actual_submit").show();
+                $("#loader_submit").hide();
+                return false;
+            }
+            if (salary == "") {
+                Swal.fire({
+                    icon: 'info',
+                    title: '',
+                    text: 'Salary is required.'
+                });
+                $("#actual_submit").show();
+                $("#loader_submit").hide();
+                return false;
+            }
+            if (eid == "") {
+                Swal.fire({
+                    icon: 'info',
+                    title: '',
+                    text: 'Emirates ID is required.'
+                });
+                $("#actual_submit").show();
+                $("#loader_submit").hide();
+                return false;
+            }
+            if (eid.length < 3) {
+                Swal.fire({
+                    icon: 'info',
+                    title: '',
+                    text: 'Enter at least three characters for Emirates ID.'
+                });
+                $("#actual_submit").show();
+                $("#loader_submit").hide();
+                return false;
+            }
+
 
         }
 
@@ -576,7 +646,7 @@
                     Swal.fire({
                         icon: 'success',
                         title: 'Success',
-                        text: 'Client updated.'
+                        text: 'Staff updated.'
                     }).then((result) => {
                         if (result.isConfirmed) {
                             location.reload();
@@ -586,7 +656,7 @@
                     Swal.fire({
                         icon: 'info',
                         title: 'Info',
-                        text: 'Email already exists.'
+                        text: 'Staff already exists.'
                     });
                 } else {
                     $('#faculty_loader').removeClass('sk-loading');

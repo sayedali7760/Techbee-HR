@@ -110,6 +110,24 @@
                                         class="form-control make-star mb-5" id="" placeholder="Confirm Password">
                                 </div>
                             </div>
+                            <div class="d-flex flex-wrap gap-5">
+
+                                <div class="fv-row w-100 flex-md-root">
+                                    <label class="required form-label">Company Name</label>
+                                    <input type="text" class="form-control mb-5" id="company_name" name="company_name"
+                                        placeholder="Last Name" maxlength="50" value="<?php echo $user_data['company_name']; ?>">
+                                </div>
+
+                                <div class="fv-row w-100 flex-md-root">
+                                    <label class="required form-label">Company Logo</label>
+                                    <input type="file" class="form-control files" name="com_logo[]" id="com_logo">
+                                    <p style="font-size: 11px;">(file format-jpg, jpeg, png)(1333*277)</p>
+                                </div>
+
+                                <div class="fv-row w-100 flex-md-root">
+
+                                </div>
+                            </div>
                             <div class="d-flex justify-content-end">
 
                                 <a href="<?php echo base_url(); ?>user-management/user-show" id="kt_ecommerce_add_product_cancel"
@@ -156,6 +174,7 @@
         var password = $('#password').val();
         var email = $('#email').val();
         var confirm_password = $('#con_password').val();
+        var company_name = $('#company_name').val();
 
         if (fname == "") {
             Swal.fire({
@@ -227,6 +246,15 @@
                     icon: 'info',
                     title: '',
                     text: 'Password and Confirm Password must be the same.'
+                });
+                $("#loader").hide();
+                return false;
+            }
+            if (company_name == '') {
+                Swal.fire({
+                    icon: 'info',
+                    title: '',
+                    text: 'Company Name is required.'
                 });
                 $("#loader").hide();
                 return false;

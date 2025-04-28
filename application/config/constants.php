@@ -85,24 +85,9 @@ defined('EXIT__AUTO_MIN')      or define('EXIT__AUTO_MIN', 9); // lowest automat
 defined('EXIT__AUTO_MAX')      or define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 
 
-define('APP_TITLE', 'Smart-FX | Japan');
+define('APP_TITLE', 'Techbee | HRMS');
 define('ERROR_404_AJAX', 'template/error-404-ajax');
 define('ERROR_500_AJAX', 'template/error-500-ajax');
 define('ERROR_500', 'template/error-500');
 define('ERROR_500_NEW', 'template/error-500-new');
 define('INVALID_REQUEST_MESSAGE', 'Invalid request. Please try again');
-
-define('DEMO_IP', '188.240.63.174');
-define('DEMO_PORT', '443');
-define('DEMO_TIMEOUT', '300');
-define('DEMO_LOGIN', '855519');
-define('DEMO_PASSWORD', 'Japan@855519');
-
-define('LIVE_IP', '188.240.63.197');
-define('LIVE_PORT', '443');
-define('LIVE_TIMEOUT', '300');
-define('LIVE_LOGIN', '10006');
-define('LIVE_PASSWORD', 'Japan@56789');
-
-define('ACCOUNT_START', '6315');
-define('MANAGER_MAIL', 'seyad@smartfx.com');

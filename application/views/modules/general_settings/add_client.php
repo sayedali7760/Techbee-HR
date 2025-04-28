@@ -51,7 +51,7 @@
 
                                 <div class="card-header">
                                     <div class="card-title">
-                                        <h2>Add Client</h2>
+                                        <h2>Add Staff</h2>
                                     </div>
                                 </div>
 
@@ -121,20 +121,50 @@
 
                                     </div>
                                     <div class="d-flex flex-wrap gap-5">
+
                                         <div class="fv-row w-100 flex-md-root">
-                                            <label class="form-label">Manager</label>
-                                            <select class="form-select mb-5" data-control="select2" data-placeholder="Select an option" id="manager" name="manager">
-                                                <option value=""></option>
-                                                <?php foreach ($staff_details as $staff) { ?>
-                                                    <option value="<?php echo $staff->id; ?>"><?php echo $staff->fname; ?></option>
-                                                <?php } ?>
-                                            </select>
+                                            <label class="required form-label">Nationality</label>
+                                            <input type="text" id="nationality" maxlength="50" name="nationality"
+                                                class="form-control make-star mb-5"
+                                                placeholder="Nationality">
                                         </div>
+
+
                                         <div class="fv-row w-100 flex-md-root">
+                                            <label class="required form-label">Designation</label>
+                                            <input type="text" id="designation" maxlength="50" name="designation"
+                                                class="form-control make-star mb-5"
+                                                placeholder="Designation">
                                         </div>
+
                                         <div class="fv-row w-100 flex-md-root">
+                                            <label class="required form-label">Salary</label>
+                                            <input type="text" maxlength="10" name="salary"
+                                                class="form-control make-star mb-5 numeric" id="salary"
+                                                placeholder="Salary">
                                         </div>
+
                                     </div>
+                                    <div class="d-flex flex-wrap gap-5">
+
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <label class="required form-label">Emirates ID</label>
+                                            <input type="text" maxlength="50" name="eid"
+                                                class="form-control make-star mb-5" id="eid"
+                                                placeholder="Emirated ID">
+                                        </div>
+
+
+                                        <div class="fv-row w-100 flex-md-root">
+
+                                        </div>
+
+                                        <div class="fv-row w-100 flex-md-root">
+
+                                        </div>
+
+                                    </div>
+
                                     <div class="d-flex flex-wrap gap-5">
                                         <div class="fv-row w-100 flex-md-root">
                                         </div>
@@ -180,7 +210,10 @@
         var email = $('#email').val();
         var phone = $('#phone').val();
         var confirm_password = $('#con_password').val();
-        var manager = $('#manager').val();
+        var nationality = $('#nationality').val();
+        var designation = $('#designation').val();
+        var salary = $('#salary').val();
+        var eid = $('#eid').val();
 
         if (name == "") {
             Swal.fire({
@@ -198,7 +231,8 @@
                 title: '',
                 text: 'Email is required.'
             });
-            $("#loader").hide();
+            $("#actual_submit").show();
+            $("#loader_submit").hide();
             return false;
         }
         if (phone == "") {
@@ -207,7 +241,8 @@
                 title: '',
                 text: 'Phone is required.'
             });
-            $("#loader").hide();
+            $("#actual_submit").show();
+            $("#loader_submit").hide();
             return false;
         }
 
@@ -251,17 +286,76 @@
             $("#loader_submit").hide();
             return false;
         }
-        if (manager == '') {
+        if (nationality == '') {
             Swal.fire({
                 icon: 'info',
                 title: '',
-                text: 'Manager is required.'
+                text: 'Nationality is required.'
             });
             $("#actual_submit").show();
             $("#loader_submit").hide();
             return false;
         }
-
+        if (designation == '') {
+            Swal.fire({
+                icon: 'info',
+                title: '',
+                text: 'Designation is required.'
+            });
+            $("#actual_submit").show();
+            $("#loader_submit").hide();
+            return false;
+        }
+        if (salary == '') {
+            Swal.fire({
+                icon: 'info',
+                title: '',
+                text: 'Salary is required.'
+            });
+            $("#actual_submit").show();
+            $("#loader_submit").hide();
+            return false;
+        }
+        if (eid == '') {
+            Swal.fire({
+                icon: 'info',
+                title: '',
+                text: 'Emirates ID is required.'
+            });
+            $("#actual_submit").show();
+            $("#loader_submit").hide();
+            return false;
+        }
+        if (eid.length < 3) {
+            Swal.fire({
+                icon: 'info',
+                title: '',
+                text: 'Enter at least three characters for Emirates ID.'
+            });
+            $("#actual_submit").show();
+            $("#loader_submit").hide();
+            return false;
+        }
+        if (phone.length < 3) {
+            Swal.fire({
+                icon: 'info',
+                title: '',
+                text: 'Enter at least three characters for Phone.'
+            });
+            $("#actual_submit").show();
+            $("#loader_submit").hide();
+            return false;
+        }
+        if (salary.length < 3) {
+            Swal.fire({
+                icon: 'info',
+                title: '',
+                text: 'Enter at least three characters for Salary.'
+            });
+            $("#actual_submit").show();
+            $("#loader_submit").hide();
+            return false;
+        }
 
         var form = $("#client_save");
         var formData = new FormData(form[0]);
@@ -281,14 +375,14 @@
                     Swal.fire({
                         icon: 'success',
                         title: 'Success',
-                        text: 'Client created.'
+                        text: 'Staff created.'
                     });
                     $('#client_save').trigger("reset");
                 } else if (data.status == 0) {
                     Swal.fire({
                         icon: 'info',
                         title: 'Info',
-                        text: 'Client already exists.'
+                        text: 'Staff already exists.'
                     });
                 } else {
                     $('#faculty_loader').removeClass('sk-loading');
