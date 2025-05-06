@@ -32,7 +32,7 @@ var KTAppEcommerceReportSales = function() {
                     }
                 }, o), o(t, e)
             })(), (() => {
-                const e = "Sales Report";
+                const e = "Report";
                 new $.fn.dataTable.Buttons(t, {
                     buttons: [{
                         extend: "copyHtml5",

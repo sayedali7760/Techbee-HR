@@ -103,6 +103,13 @@ class Payment extends CI_Controller
             return false;
         }
     }
+    public function payroll()
+    {
+        $data['title'] = 'Payroll';
+        $data['subtitle'] = 'Payroll Payment';
+        $data['template'] = 'modules/general_settings/payment/payroll';
+        $this->load->view('template/dashboard_template', $data);
+    }
     public function fileUpload($uploadPath, $uploadfile = '')
     {
         $uploadData = array(); // Store uploaded file names

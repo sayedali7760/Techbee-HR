@@ -102,12 +102,21 @@ $route['client/approve-refund'] = 'settings/Payment/approve_refund';
 $route['client/reject-refund'] = 'settings/Payment/reject_refund';
 $route['client/view-refund'] = 'settings/Payment/view_refund';
 
+$route['client/payroll'] = 'settings/Payment/payroll';
+
 $route['task/scheule-task'] = 'settings/Task/schedule_task';
 $route['task/scheule-task-save'] = 'settings/Task/schedule_task_save';
 $route['task/scheuled-tasks'] = 'settings/Task/scheduled_tasks';
 $route['task/assigned-tasks'] = 'settings/Task/assigned_tasks';
 $route['task/change_status'] = 'settings/Task/change_status';
 $route['task/view-task'] = 'settings/Task/view_task';
+
+$route['leave/apply-leave'] = 'settings/Leave/apply_leave';
+$route['leave/leave-save'] = 'settings/Leave/apply_leave_save';
+$route['leave/applied-leave'] = 'settings/Leave/applied_leave';
+$route['leave/applied-leave-admin'] = 'settings/Leave/applied_leave_admin';
+$route['leave/approve-leave'] = 'settings/Leave/approve_leave';
+$route['leave/reject-leave'] = 'settings/Leave/reject_leave';
 
 
 $route['client/my-data'] = 'settings/Client_crm/my_data';

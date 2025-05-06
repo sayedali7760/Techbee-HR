@@ -97,14 +97,10 @@
                             <!--begin::Table row-->
                             <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
                                 <th class="min-w-100px">Sl.no</th>
-                                <th class="min-w-100px">Staff Id</th>
-                                <th class="text-start min-w-75px">Name</th>
-                                <th class="text-strat min-w-75px">Amount</th>
-                                <th class="text-strat min-w-75px">Created On</th>
-                                <th class="text-strat min-w-75px">Date</th>
-                                <th class="text-strat min-w-75px">Receipt</th>
+                                <th class="min-w-100px">Date</th>
+                                <th class="text-start min-w-75px">Type</th>
+                                <th class="text-strat min-w-75px">Document</th>
                                 <th class="text-start min-w-75px">Status</th>
-                                <th class="text-start min-w-75px">Action</th>
                             </tr>
                             <!--end::Table row-->
                         </thead>
@@ -114,16 +110,13 @@
                             <!--begin::Table row-->
                             <?php
                             $i = 1;
-                            foreach ($refund_data as $refund) { ?>
+                            foreach ($leave_list as $leave_data) { ?>
                                 <tr>
                                     <td><?php echo $i; ?></td>
-                                    <td><?php echo $refund->id; ?></td>
-                                    <td class="text-start pe-0"><b><a href="javascript:void(0);" style="color: inherit;" onclick="edit_client('<?php echo $refund->id; ?>')"><?php echo $refund->staff_name; ?></a></b></td>
-                                    <td class="text-start pe-0"><?php echo number_format($refund->amount, 2); ?></td>
-                                    <td class="text-start pe-0"><?php echo date('d-m-Y', strtotime($refund->created_on)); ?></td>
-                                    <td class="text-start pe-0"><?php echo date('d-m-Y', strtotime($refund->date)); ?></td>
+                                    <td><?php echo date('d/m/Y', strtotime($leave_data->date)); ?></td>
+                                    <td><?php echo get_leave_type($leave_data->type); ?></td>
                                     <td class="text-start pe-0">
-                                        <a title="Download" target="_blank" href="<?php echo base_url() ?>uploads/<?php echo $refund->file; ?>" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+                                        <a title="Download" target="_blank" href="<?php echo base_url() ?>uploads/<?php echo $leave_data->file; ?>" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
                                             <span class="svg-icon svg-icon-primary svg-icon-2hx"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                                     <path opacity="0.3" d="M10 4H21C21.6 4 22 4.4 22 5V7H10V4Z" fill="currentColor" />
                                                     <path opacity="0.3" d="M13 14.4V9C13 8.4 12.6 8 12 8C11.4 8 11 8.4 11 9V14.4H13Z" fill="currentColor" />
@@ -134,22 +127,16 @@
 
                                     <td class="text-start pe-0">
                                         <?php
-                                        if ($refund->approved == 0) {
+                                        if ($leave_data->status == 0) {
                                             echo '<span class="badge badge-warning">Pending</span>';
-                                        } else if ($refund->approved == 1) {
+                                        } else if ($leave_data->status == 1) {
                                             echo '<span class="badge badge-success">Approved</span>';
-                                        } else if ($refund->approved == 2) {
+                                        } else if ($leave_data->status == 2) {
                                             echo '<span class="badge badge-danger">Rejected</span>';
                                         }
                                         ?>
                                     </td>
-                                    <td><a title="View" href="javascript:void(0);" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" onclick="view_refund(<?php echo $refund->id; ?>)">
-                                            <span class="svg-icon svg-icon-primary svg-icon-2hx"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                    <path opacity="0.3" d="M4.7 17.3V7.7C4.7 6.59543 5.59543 5.7 6.7 5.7H9.8C10.2694 5.7 10.65 5.31944 10.65 4.85C10.65 4.38056 10.2694 4 9.8 4H5C3.89543 4 3 4.89543 3 6V19C3 20.1046 3.89543 21 5 21H18C19.1046 21 20 20.1046 20 19V14.2C20 13.7306 19.6194 13.35 19.15 13.35C18.6806 13.35 18.3 13.7306 18.3 14.2V17.3C18.3 18.4046 17.4046 19.3 16.3 19.3H6.7C5.59543 19.3 4.7 18.4046 4.7 17.3Z" fill="currentColor" />
-                                                    <rect x="21.9497" y="3.46448" width="13" height="2" rx="1" transform="rotate(135 21.9497 3.46448)" fill="currentColor" />
-                                                    <path d="M19.8284 4.97161L19.8284 9.93937C19.8284 10.5252 20.3033 11 20.8891 11C21.4749 11 21.9497 10.5252 21.9497 9.93937L21.9497 3.05029C21.9497 2.498 21.502 2.05028 20.9497 2.05028L14.0607 2.05027C13.4749 2.05027 13 2.52514 13 3.11094C13 3.69673 13.4749 4.17161 14.0607 4.17161L19.0284 4.17161C19.4702 4.17161 19.8284 4.52978 19.8284 4.97161Z" fill="currentColor" />
-                                                </svg></span>
-                                        </a></td>
+
 
                                 </tr>
 

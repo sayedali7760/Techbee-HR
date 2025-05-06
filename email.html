@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Email Notification</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background-image: url('https://www.transparenttextures.com/patterns/white-wave.png'); /* Light background image */
+            background-color: #f7f7fb;
+            background-repeat: repeat;
+            background-size: auto;
+        }
+        .container {
+            max-width: 600px;
+            margin: 30px auto;
+            background-color: #ffffff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .header {
+            background: linear-gradient(90deg, #4a00e0, #8e2de2);
+            color: #ffffff;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 30px;
+            font-weight: 600;
+        }
+        .banner {
+            width: 100%;
+            height: auto;
+        }
+        .body {
+            padding: 30px;
+            font-size: 16px;
+            color: #333333;
+            line-height: 1.7;
+        }
+        .body p {
+            margin: 10px 0;
+        }
+        .button {
+            margin: 20px 0;
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: #8e2de2;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            font-size: 16px;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 13px;
+            color: #888888;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h1>Request Received!</h1>
+        </div>
+
+        <img class="banner" src="https://via.placeholder.com/600x200/8e2de2/ffffff?text=Thank+You" alt="Banner Image">
+
+        <div class="body">
+            <p>Hi [Name],</p>
+            <p>We’re happy to let you know that your recent request has been successfully received. Our team is reviewing it and will get back to you shortly!</p>
+            <p>If you want to track or update your request, please click the button below:</p>
+
+            <a href="[Link Here]" class="button">View Request</a>
+
+            <p>If you didn’t initiate this request, no further action is required.</p>
+
+            <p>Warm regards,<br><strong>[Your Company Name]</strong></p>
+        </div>
+
+        <div class="footer">
+            &copy; <?= date('Y') ?> [Your Company Name]. All rights reserved.<br>
+            123 Street, City, Country
+        </div>
+    </div>
+
+</body>
+</html>
