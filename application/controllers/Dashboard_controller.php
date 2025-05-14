@@ -21,6 +21,10 @@ class Dashboard_controller extends CI_Controller
         $type = $this->session->userdata['template_type'];
         if ($type == 1) {
             $data['template'] = 'dashboard';
+            $data['total_staff'] = $this->MDashboard->get_total_staff();
+            $data['total_tasks'] = $this->MDashboard->get_total_tasks();
+            $data['total_leave'] = $this->MDashboard->get_total_leave();
+            $data['leave_applications'] = $this->MDashboard->get_leave_applications();
         }
         if ($type == 2) {
             $id = $this->session->userdata['id'];

@@ -32,10 +32,16 @@ class Leave_model extends CI_Model
     }
     public function get_applied_leave_admin($id)
     {
-        $this->db->select('lm.*,c.name as client_name');
-        $this->db->from('leave_management lm');
-        $this->db->join('clients c', 'c.id = lm.staff_id', 'left');
-        $this->db->where('c.manager', $id);
+        if ($this->session->userdata['id'] == ADMIN_MANAGER) {
+            $this->db->select('lm.*,c.name as client_name');
+            $this->db->from('leave_management lm');
+            $this->db->join('clients c', 'c.id = lm.staff_id', 'left');
+        } else {
+            $this->db->select('lm.*,c.name as client_name');
+            $this->db->from('leave_management lm');
+            $this->db->join('clients c', 'c.id = lm.staff_id', 'left');
+            $this->db->where('c.manager', $id);
+        }
         $query = $this->db->get()->result();
         return $query;
     }

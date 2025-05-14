@@ -20,7 +20,7 @@
                             data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change avatar"
                             onclick="show_div()">
                             <i class="bi bi-pencil-fill fs-7"></i>
-                            <input type="file" name="avatar[]" id="avatar" accept=".png, .jpg, .jpeg" />
+                            <input type="file" onchange="update_thumbnail()" name="avatar[]" id="avatar" accept=".png, .jpg, .jpeg" />
                             <input type="hidden" name="avatar_remove" />
                         </label>
                         <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
@@ -83,18 +83,46 @@
                                         <label class="required form-label">Password</label>
                                         <input type="hidden" name="client_id" id="client_id" value="<?php echo $user_data['id']; ?>">
                                         <input type="text" id="password" maxlength="15" name="password"
-                                            class="mb-5 form-control make-star" id="" placeholder="Password">
+                                            class="mb-5 form-control make-star" placeholder="Password">
                                     </div>
 
                                     <div class="fv-row w-100 flex-md-root">
                                         <label class="required form-label">Confirm Password</label>
                                         <input type="text" id="con_password" maxlength="15" name="con_password"
-                                            class="form-control make-star mb-5" id="" placeholder="Confirm Password">
+                                            class="form-control make-star mb-5" placeholder="Confirm Password">
                                     </div>
                                     <div class="fv-row w-100 flex-md-root">
                                         <label class="form-label">&nbsp;</label>
                                         <div class="d-flex justify-content-end">
                                             <a href="javascript:void(0);" class="btn btn-primary" title="Save Changes" onclick="update_data()">Update Password</a>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="card-body pt-0">
+
+                                <div class="d-flex flex-wrap gap-5">
+
+
+                                    <div class="fv-row w-100 flex-md-root">
+                                        <label class="form-label">Upload Logo</label>
+                                        <input type="file" id="company_logo" name="company_logo[]"
+                                            class="mb-5 form-control make-star" placeholder="Select File">
+                                        <p style="font-size: 11px;">(file format-jpg, jpeg, png)(1333*277) / After uploading, please log in again to view the updated logo.</p>
+                                    </div>
+                                    <div class="fv-row w-100 flex-md-root">
+                                        <?php if ($user_data['company_logo'] != '') { ?>
+                                            <img alt="Logo" src="<?php echo base_url(); ?>/uploads/<?php echo $user_data['company_logo']; ?>" class="h-45px h-lg-45px">
+                                        <?php } else { ?>
+                                            <img alt="Logo" src="<?php echo base_url(); ?>/assets/media/logos/tech-logo.png" class="h-45px h-lg-45px">
+                                        <?php } ?>
+                                    </div>
+                                    <div class="fv-row w-100 flex-md-root">
+                                        <label class="form-label">&nbsp;</label>
+                                        <div class="d-flex justify-content-end">
+                                            <a href="javascript:void(0);" class="btn btn-primary" title="Save Changes" onclick="update_logo()">Update Logo</a>
                                         </div>
                                     </div>
 
@@ -125,9 +153,53 @@
     KTImageInput.init();
 </script>
 <script>
+    function update_thumbnail() {
+        var ops_url = baseurl + 'admin-crm/update-thumbnail';
+        var form = $("#client_update");
+        var formData = new FormData(form[0]);
+        $.ajax({
+            type: "POST",
+            cache: false,
+            async: true,
+            url: ops_url,
+            processData: false,
+            contentType: false,
+            data: formData,
+            success: function(result) {
+                $("#loader").hide();
+                var data = $.parseJSON(result);
+                if (data.status == 1) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success',
+                        text: 'Thumnail updated.'
+                    }).then(() => {
+                        location.reload(); // Reloads the current page
+                    });
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Failed',
+                        text: 'Failed to upload Documents!'
+                    });
+                }
+            },
+            error: function(xhr, status, error) {
+                $("#loader").hide();
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: 'Document updated.'
+                }).then(() => {
+                    location.reload(); // Reloads the current page
+                });
+            }
+        });
+    }
+
     function update_data() {
         $("#loader").show();
-        var ops_url = baseurl + 'client-crm/update-password';
+        var ops_url = baseurl + 'admin-crm/update-password';
         var password = $('#password').val();
         var confirm_password = $('#con_password').val();
         if (password != '') {
@@ -170,10 +242,10 @@
         $.ajax({
             type: "POST",
             cache: false,
-            async: true,
+            // async: true,
             url: ops_url,
-            processData: false,
-            contentType: false,
+            // processData: false,
+            // contentType: false,
             data: {
                 password: password
             },
@@ -185,9 +257,57 @@
                         icon: 'success',
                         title: 'Success',
                         text: 'Password updated.'
+                    }).then(() => {
+                        location.reload();
                     });
-                    $('#password').val('');
-                    $('#con_password').val('');
+                }
+            },
+            error: function(xhr, status, error) {
+                $("#loader").hide();
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'An error occurred while processing your request.'
+                });
+            }
+        });
+    }
+
+    function update_logo() {
+        var logo = $('#company_logo').val();
+        var ops_url = baseurl + 'user-management/update-logo';
+        if (logo == '') {
+            Swal.fire({
+                icon: 'info',
+                title: '',
+                text: 'Please select a file.'
+            });
+            return false;
+        }
+        var form = $("#client_update");
+        var formData = new FormData(form[0]);
+
+        $.ajax({
+            type: "POST",
+            cache: false,
+            async: true,
+            url: ops_url,
+            processData: false,
+            contentType: false,
+            data: formData,
+            success: function(result) {
+                $("#loader").hide();
+                var data = $.parseJSON(result);
+                if (data.status == 1) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success',
+                        text: 'Logo uploaded.'
+                    }).then(() => {
+                        location.reload();
+                    });
+                } else {
+                    $('#faculty_loader').removeClass('sk-loading');
                 }
             },
             error: function(xhr, status, error) {

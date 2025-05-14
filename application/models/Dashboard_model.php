@@ -5,41 +5,77 @@ class Dashboard_model extends CI_Model
     {
         parent::__construct();
     }
-    public function get_dashboard_count($inst_ids)
+    public function get_total_staff()
     {
+        $staff_id = $this->session->userdata['id'];
 
-        $return_query['institutions'] = $this->db->select('*')
-            ->from('institution')
-            ->where('is_active', 1)
-            ->where_in('institution_id', $inst_ids)
-            ->get()
-            ->result();
+        if ($this->session->userdata['id'] == ADMIN_MANAGER) {
+            $this->db->select('COUNT(*) as total_staffs');
+            $this->db->from('clients AS c');
+        } else {
+            $this->db->select('COUNT(*) as total_staffs');
+            $this->db->from('clients AS c');
+            $this->db->where('c.manager', $staff_id);
+        }
+        $query = $this->db->get();
+        $total_count = $query->row()->total_staffs;
+        return $total_count;
+    }
+    public function get_total_tasks()
+    {
+        $staff_id = $this->session->userdata['id'];
 
-        $return_query['requisitions'] = $this->db->select('*')
-            ->from('requisitions')
-            ->where('is_active', 1)
-            ->where_in('inst_id', $inst_ids)
-            ->get()
-            ->result();
+        if ($this->session->userdata['id'] == ADMIN_MANAGER) {
+            $this->db->select('COUNT(*) as total_task');
+            $this->db->from('task AS t');
+            $this->db->join('clients AS c', 'c.id = t.staff_id', 'left');
+        } else {
+            $this->db->select('COUNT(*) as total_task');
+            $this->db->from('task AS t');
+            $this->db->join('clients AS c', 'c.id = t.staff_id', 'left');
+            $this->db->where('c.manager', $staff_id);
+        }
+        $query = $this->db->get();
+        $total_count = $query->row()->total_task;
+        return $total_count;
+    }
+    public function get_total_leave()
+    {
+        $staff_id = $this->session->userdata['id'];
 
-        $return_query['interview_scheduled'] = $this->db->select('*')
-            ->from('requisition_resume_mapping as R')
-            ->where('status', 3)
-            ->where_in('S.inst_id', $inst_ids)
-            ->join('requisitions as S', 'S.requisition_id = R.requisition_id', 'left')
-            ->get()
-            ->result();
+        if ($this->session->userdata['id'] == ADMIN_MANAGER) {
+            $this->db->select('COUNT(*) as total_leave');
+            $this->db->from('leave_management AS l');
+            $this->db->join('clients AS c', 'c.id = l.staff_id', 'left');
+            $this->db->where('l.status', 1);
+        } else {
+            $this->db->select('COUNT(*) as total_leave');
+            $this->db->from('leave_management AS l');
+            $this->db->join('clients AS c', 'c.id = l.staff_id', 'left');
+            $this->db->where('l.status', 1);
+            $this->db->where('c.manager', $staff_id);
+        }
+        $query = $this->db->get();
+        $total_count = $query->row()->total_leave;
+        return $total_count;
+    }
+    public function get_leave_applications()
+    {
+        $staff_id = $this->session->userdata['id'];
 
-        $where = '(status="1" or status = "2")';
-        $return_query['pending_scheduled'] = $this->db->select('*')
-            ->from('requisition_resume_mapping as R')
-            ->where($where)
-            ->where_in('S.inst_id', $inst_ids)
-            ->join('requisitions as S', 'S.requisition_id = R.requisition_id', 'left')
-            ->get()
-            ->result();
-
-
-        return $return_query;
+        if ($this->session->userdata['id'] == ADMIN_MANAGER) {
+            $this->db->select('l.*, c.name as staff_name');
+            $this->db->from('leave_management AS l');
+            $this->db->join('clients AS c', 'c.id = l.staff_id', 'left');
+            $this->db->where('l.status', 0);
+        } else {
+            $this->db->select('l.*, c.name as staff_name');
+            $this->db->from('leave_management AS l');
+            $this->db->join('clients AS c', 'c.id = l.staff_id', 'left');
+            $this->db->where('l.status', 0);
+            $this->db->where('c.manager', $staff_id);
+        }
+        $query = $this->db->get()->result();
+        return $query;
     }
 }

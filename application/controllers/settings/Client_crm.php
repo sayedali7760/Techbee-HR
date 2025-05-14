@@ -31,7 +31,6 @@ class Client_crm extends CI_Controller
         $data['title'] = 'Client';
         $data['subtitle'] = 'Bank Details';
         $id = $this->session->userdata['id'];
-        $data['wallet_data'] = $this->CModel->get_wallet_details($id);
         $data['bank_data'] = $this->CModel->get_bank_data($id);
 
         $data['template'] = 'modules/general_settings/bank_data';
@@ -139,6 +138,7 @@ class Client_crm extends CI_Controller
     {
         $id = $this->session->userdata['id'];
         $password = md5($this->input->post('password'));
+
         $data = array('password' => $password);
         if ($this->CModel->update_password($id, $data)) {
             echo json_encode(array('status' => 1));
@@ -147,6 +147,7 @@ class Client_crm extends CI_Controller
             return false;
         }
     }
+
     public function update_thumbnail()
     {
         $id = $this->session->userdata['id'];
@@ -232,10 +233,20 @@ class Client_crm extends CI_Controller
         }
     }
 
-    // new sush 
+    public function show_bank_details_client()
+    {
+        $onload =  $this->input->post('load');
+        $user_id = $this->input->post('client_id');
+        if ($onload == 1) {
+            $data['bank_data'] = $this->CModel->get_bank_data($user_id);
+            $view = $this->load->view('modules/general_settings/bank_details_admin_view', $data, TRUE);
+            echo json_encode(array('status' => 1, 'message' => 'Data Loaded', 'view' => $view));
+            return;
+        }
+    }
     public function show_bank_details()
     {
-        // if ($this->input->is_ajax_request() == 1) {
+
         $onload =  $this->input->post('load');
         $user_id = $this->input->post('client_id');
         if ($onload == 1) {
@@ -246,25 +257,9 @@ class Client_crm extends CI_Controller
             echo json_encode(array('status' => 1, 'message' => 'Data Loaded', 'view' => $view));
             return;
         }
-        // } else {
-        //     $this->load->view(ERROR_500);
-        // }
     }
 
-    public function reject_bank_data()
-    {
-        // if ($this->input->is_ajax_request() == 1) {
-        $client_id = $this->input->post('client_id');
-        $id = $this->input->post('id');
-        if ($this->CModel->reject_data($client_id, $id)) {
-            echo json_encode(array('status' => 1));
-            return;
-        } else {
-            echo json_encode(array('status' => 0));
-            return;
-        }
-        // }
-    }
+
     public function show_client()
     {
 
@@ -288,21 +283,30 @@ class Client_crm extends CI_Controller
             return false;
         }
     }
-    public function approve_bank_data()
+    public function reject_bank_data()
     {
-        // if ($this->input->is_ajax_request() == 1) {
         $client_id = $this->input->post('client_id');
         $id = $this->input->post('id');
-        if ($this->CModel->approve_data($client_id, $id)) {
+        if ($this->CModel->reject_bank_data($client_id, $id)) {
             echo json_encode(array('status' => 1));
             return;
         } else {
             echo json_encode(array('status' => 0));
             return;
         }
-        // }
     }
-    // end
+    public function approve_bank_data()
+    {
+        $client_id = $this->input->post('client_id');
+        $id = $this->input->post('id');
+        if ($this->CModel->approve_bank_data($client_id, $id)) {
+            echo json_encode(array('status' => 1));
+            return;
+        } else {
+            echo json_encode(array('status' => 0));
+            return;
+        }
+    }
 
     public function fileUpload($uploadPath, $uploadfile = '')
     {

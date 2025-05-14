@@ -5,7 +5,7 @@
         <div id="kt_content_container" class="container-xxl">
 
             <?php
-            echo form_open_multipart('settings/add_client', array('id' => 'expense_form', 'role' => 'form', 'class' => 'form d-flex flex-column flex-lg-row'));
+            echo form_open_multipart('settings/add_client', array('id' => 'payroll_payment', 'role' => 'form', 'class' => 'form d-flex flex-column flex-lg-row'));
             ?>
 
 
@@ -29,21 +29,24 @@
                                     <div class="d-flex flex-wrap gap-5">
 
                                         <div class="fv-row w-100 flex-md-root">
-                                            <label class="required form-label">Leave Type</label>
+                                            <label class="required form-label">Staff Name</label>
                                             <select class="form-select mb-5" data-control="select2"
                                                 data-placeholder="Select an option"
-                                                name="leave_type" id="leave_type">
+                                                name="staff" id="staff" onchange="get_staff_refund_details()">
                                                 <option value=""></option>
-                                                <option value="1">Casual Leave</option>
-                                                <option value="2">Sick Leave</option>
-                                                <option value="3">Annual Leave</option>
-                                                <option value="4">Maternity Leave</option>
-                                                <option value="5">Paternity Leave</option>
+                                                <?php
+                                                if (isset($staff_details) && !empty($staff_details)) {
+                                                    foreach ($staff_details as $staff) {
+
+                                                        echo '<option value ="' . $staff->id . '">' . $staff->name . '</option>';
+                                                    }
+                                                }
+                                                ?>
                                             </select>
                                         </div>
                                         <div class="fv-row w-100 flex-md-root">
-                                            <label class="required form-label">Date</label>
-                                            <input type="text" class="form-control form-control-solid" placeholder="Pick date" name="kt_daterangepicker_3" id="kt_daterangepicker_3" />
+                                            <label class="required form-label">Month</label>
+                                            <input type="text" onchange="get_staff_refund_details()" class="form-control form-control-solid" placeholder="Pick date" name="kt_month_picker" id="kt_month_picker" />
                                         </div>
 
 
@@ -58,7 +61,13 @@
                                     <div class="d-flex flex-wrap gap-5">
 
                                         <div class="fv-row w-100 flex-md-root">
-                                            <label class="required form-label">Receipt</label>
+                                            <label class="form-label">Bonus</label>
+                                            <input type="text" class="form-control mb-5 numeric" id="bonus" name="bonus"
+                                                placeholder="Bonus" maxlength="10">
+                                        </div>
+
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <label class="form-label">Receipt</label>
                                             <input type="file" class="form-control files" name="receipt[]" id="receipt">
                                             <p style="font-size: 11px;">(file format-jpg, jpeg, png)(1333*277)</p>
                                         </div>
@@ -70,47 +79,35 @@
                                                 class="mb-5 form-control make-star" placeholder="Description">
                                         </div>
 
-                                        <div class="fv-row w-100 flex-md-root">
-
-                                        </div>
                                     </div>
+                                    <div class="d-flex flex-wrap gap-5">
 
-                                    <div class="fv-row w-100 flex-md-root">
-                                        <div class="alert alert-dismissible bg-light-primary d-flex flex-column flex-sm-row w-100 p-5 mb-10">
-                                            <span class="svg-icon svg-icon-2hx svg-icon-primary me-4 mb-5 mb-sm-0">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                    <path opacity="0.3" d="M14 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V8L14 2Z" fill="currentColor"></path>
-                                                    <path d="M20 8L14 2V6C14 7.10457 14.8954 8 16 8H20Z" fill="currentColor"></path>
-                                                    <rect x="13.6993" y="13.6656" width="4.42828" height="1.73089" rx="0.865447" transform="rotate(45 13.6993 13.6656)" fill="currentColor"></rect>
-                                                    <path d="M15 12C15 14.2 13.2 16 11 16C8.8 16 7 14.2 7 12C7 9.8 8.8 8 11 8C13.2 8 15 9.8 15 12ZM11 9.6C9.68 9.6 8.6 10.68 8.6 12C8.6 13.32 9.68 14.4 11 14.4C12.32 14.4 13.4 13.32 13.4 12C13.4 10.68 12.32 9.6 11 9.6Z" fill="currentColor"></path>
-                                                </svg>
-                                            </span>
-                                            <div class="d-flex flex-column pe-0 pe-sm-10">
-                                                <h4 class="fw-bold">This is an alert</h4>
-                                                <span>After you submit a refund request, it goes through a verification process to confirm all details are accurate. Once the verification is completed and your refund is approved, the refund amount will be combined with your regular salary and paid out during the same payroll cycle for the current month. Please ensure that your refund application is complete to avoid any delays.</span>
-                                            </div>
-                                            <button type="button" class="position-absolute position-sm-relative m-2 m-sm-0 top-0 end-0 btn btn-icon ms-sm-auto" data-bs-dismiss="alert">
-                                                <span class="svg-icon svg-icon-1 svg-icon-primary">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                        <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor"></rect>
-                                                        <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor"></rect>
-                                                    </svg>
-                                                </span>
-                                            </button>
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <label class="required form-label">Bank</label>
+                                            <select class="form-select mb-5" data-control="select2"
+                                                data-placeholder="Select an option"
+                                                name="bank" id="bank">
+                                                <option value=""></option>
+
+                                            </select>
+                                        </div>
+                                        <div class="fv-row w-100 flex-md-root">
+                                        </div>
+                                        <div class="fv-row w-100 flex-md-root">
                                         </div>
                                     </div>
                                     <div class="d-flex flex-wrap gap-5">
                                         <div class="fv-row w-100 flex-md-root">
                                         </div>
                                     </div>
-                                    <div class="d-flex justify-content-end">
+                                    <div class="d-flex px-7 py-3 mb-6 justify-content-end">
 
                                         <a href="<?php echo base_url(); ?>home" id="kt_ecommerce_add_product_cancel"
                                             class="btn btn-light me-5">Cancel</a>
 
 
                                         <a id="actual_submit" href="javascript:void(0);" class="btn btn-primary submit_butt" title="Save Changes"
-                                            onclick="submit_expense_data()">Save Changes</a>
+                                            onclick="submit_payroll_data()">Save Changes</a>
                                         <a id="loader_submit" style="display:none;" href="javascript:void(0);" class="btn btn-primary" data-kt-indicator="on">
                                             <span class="indicator-label">Submit</span>
                                             <span class="indicator-progress">Please wait...
@@ -118,6 +115,9 @@
                                         </a>
 
                                     </div>
+                                    <div id="kt_child_post">
+                                    </div>
+
 
                                 </div>
 
@@ -135,16 +135,58 @@
     </div>
 </div>
 <script>
-    function submit_expense_data() {
+    function get_staff_refund_details() {
+        var staff_id = $('#staff').val();
+        var month = $('#kt_month_picker').val();
+        var ops_url = baseurl + 'client/get-staff-refund-details';
+        if (staff_id == "") {
+            return false;
+        }
+        $.ajax({
+            type: "POST",
+            cache: false,
+            async: false,
+            url: ops_url,
+            data: {
+                "load": 1,
+                "staff_id": staff_id,
+                "month": month
+            },
+            success: function(result) {
+                console.log(result);
+                var data = $.parseJSON(result);
+                $("#kt_child_post").html(data.view);
+                $('#kt_child_post').addClass('in-down');
+                $("html, body").animate({
+                    scrollTop: 0
+                }, "slow");
+                if (Array.isArray(data.bank_details)) {
+                    var $bankSelect = $('#bank');
+                    $bankSelect.empty().append('<option value=""></option>'); // reset with placeholder
+                    data.bank_details.forEach(function(bank) {
+                        $bankSelect.append(`<option value="${bank.id}">${bank.bank_name}</option>`);
+                    });
+
+                    // Reinitialize Select2 if necessary
+                    $bankSelect.select2();
+                }
+            }
+        });
+    }
+
+    function submit_payroll_data() {
         $("#actual_submit").hide();
         $("#loader_submit").show();
 
-        var ops_url = baseurl + 'client/refund-save';
+        var ops_url = baseurl + 'client/payroll-payment-save';
 
-        var date = $('#kt_daterangepicker_3').val();
+        var date = $('#kt_month_picker').val();
+        var staff = $('#staff').val();
         var amount = $('#amount').val();
+        var bonus = $('#bonus').val();
         var description = $('#description').val();
         var receipt = $('#receipt').val();
+        var bank = $('#bank').val();
 
         if (date == "") {
             Swal.fire({
@@ -155,6 +197,14 @@
             return false;
         }
 
+        if (staff == "") {
+            Swal.fire({
+                icon: 'info',
+                text: 'Staff is required.'
+            });
+            toggleButtons();
+            return false;
+        }
         if (amount == "") {
             Swal.fire({
                 icon: 'info',
@@ -163,7 +213,6 @@
             toggleButtons();
             return false;
         }
-
         if (description == "") {
             Swal.fire({
                 icon: 'info',
@@ -172,17 +221,17 @@
             toggleButtons();
             return false;
         }
-
-        if (receipt == "") {
+        if (bank == "") {
             Swal.fire({
                 icon: 'info',
-                text: 'Please upload a receipt.'
+                text: 'Bank is required.'
             });
             toggleButtons();
             return false;
         }
 
-        var form = $("#expense_form"); // make sure your form has this ID
+
+        var form = $("#payroll_payment"); // make sure your form has this ID
         var formData = new FormData(form[0]);
 
         $.ajax({
@@ -200,9 +249,16 @@
                     Swal.fire({
                         icon: 'success',
                         title: 'Success',
-                        text: 'Expense submitted.'
+                        text: 'Payroll Payment submitted.'
+                    }).then(() => {
+                        location.reload();
                     });
-                    form.trigger("reset");
+                } else if (data.status == 3) {
+                    Swal.fire({
+                        icon: 'info',
+                        title: 'Info',
+                        text: data.message || 'Payment already exist for this month.'
+                    });
                 } else {
                     Swal.fire({
                         icon: 'error',

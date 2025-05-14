@@ -91,3 +91,4 @@ define('ERROR_500_AJAX', 'template/error-500-ajax');
 define('ERROR_500', 'template/error-500');
 define('ERROR_500_NEW', 'template/error-500-new');
 define('INVALID_REQUEST_MESSAGE', 'Invalid request. Please try again');
+define('ADMIN_MANAGER', 24);

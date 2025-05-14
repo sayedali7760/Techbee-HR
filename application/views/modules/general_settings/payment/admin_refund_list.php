@@ -119,7 +119,7 @@
                                     <td><?php echo $i; ?></td>
                                     <td><?php echo $refund->id; ?></td>
                                     <td class="text-start pe-0"><b><a href="javascript:void(0);" style="color: inherit;" onclick="edit_client('<?php echo $refund->id; ?>')"><?php echo $refund->staff_name; ?></a></b></td>
-                                    <td class="text-start pe-0"><?php echo $refund->amount; ?></td>
+                                    <td class="text-start pe-0"><?php echo number_format($refund->amount, 2); ?></td>
                                     <td class="text-start pe-0"><?php echo date('d-m-Y', strtotime($refund->created_on)); ?></td>
                                     <td class="text-start pe-0"><?php echo date('d-m-Y', strtotime($refund->date)); ?></td>
                                     <td class="text-start pe-0">

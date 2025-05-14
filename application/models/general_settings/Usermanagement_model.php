@@ -30,6 +30,21 @@ class Usermanagement_model extends CI_Model
         $this->db->update('user_details', $data, 'id=' . $user_id . '');
         return true;
     }
+    public function update_logo($data, $user_id)
+    {
+        $this->db->update('user_details', $data, 'id=' . $user_id . '');
+        return true;
+    }
+    public function update_password_admin($id, $data)
+    {
+        $this->db->update('user_details', $data, 'id=' . $id . '');
+        return true;
+    }
+    public function thumbnail_update($data, $id)
+    {
+        $this->db->update('user_details', $data, 'id=' . $id . '');
+        return true;
+    }
     public function update_client($data, $client_id)
     {
         $this->db->update('clients', $data, 'id=' . $client_id . '');

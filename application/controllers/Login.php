@@ -235,8 +235,15 @@ class Login extends CI_Controller
     }
     public function logout()
     {
-        $this->session->sess_destroy();
-        redirect('login');
+        // $this->session->sess_destroy();
+        // redirect('login');
+        if (isset($this->session->userdata['position'])) {
+            $this->session->sess_destroy();
+            redirect('admin');
+        } else {
+            $this->session->sess_destroy();
+            redirect('login');
+        }
     }
 
     public function signup()

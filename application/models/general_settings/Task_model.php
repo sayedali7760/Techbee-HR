@@ -19,9 +19,15 @@ class Task_model extends CI_Model
     }
     public function get_staff_details($id)
     {
-        $this->db->select('C.*');
-        $this->db->from('clients as C');
-        $this->db->where('C.manager', $id);
+        if ($this->session->userdata['id'] == ADMIN_MANAGER) {
+            $this->db->select('C.*');
+            $this->db->from('clients as C');
+        } else {
+            $this->db->select('C.*');
+            $this->db->from('clients as C');
+            $this->db->where('C.manager', $id);
+        }
+
         $query = $this->db->get()->result();
         return $query;
     }
@@ -32,10 +38,17 @@ class Task_model extends CI_Model
     }
     public function get_tasks_details($id)
     {
-        $this->db->select('T.*,C.name as staff_name');
-        $this->db->from('task as T');
-        $this->db->join('clients as C', 'C.id = T.staff_id', 'left');
-        $this->db->where('C.manager', $id);
+        if ($this->session->userdata['id'] == ADMIN_MANAGER) {
+            $this->db->select('T.*,C.name as staff_name');
+            $this->db->from('task as T');
+            $this->db->join('clients as C', 'C.id = T.staff_id', 'left');
+        } else {
+            $this->db->select('T.*,C.name as staff_name');
+            $this->db->from('task as T');
+            $this->db->join('clients as C', 'C.id = T.staff_id', 'left');
+            $this->db->where('C.manager', $id);
+        }
+
         $query = $this->db->get()->result();
         return $query;
     }

@@ -21,6 +21,9 @@ class User_management extends CI_Controller
 
     public function user_add()
     {
+        if ($this->session->userdata['id'] != ADMIN_MANAGER) {
+            redirect('error');
+        }
         $data['title'] = 'Authentication';
         $data['subtitle'] = 'Add User';
         $data['user_role'] = $this->UMModel->get_user_role();
@@ -78,7 +81,7 @@ class User_management extends CI_Controller
             echo json_encode(array('status' => 0, 'view' => $this->load->view('modules/general_settings/add_client', $data, TRUE)));
             return;
         } else {
-            if ($this->CModel->insert($data)) {
+            if ($this->CModel->add_client($data)) {
                 echo json_encode(array('status' => 1, 'view' => $this->load->view('modules/general_settings/add_client', $data, TRUE)));
                 return;
             } else {
@@ -91,7 +94,8 @@ class User_management extends CI_Controller
     {
         $data['title'] = 'Staff';
         $data['subtitle'] = 'Staff List';
-        $data['client_data'] = $this->CModel->get_details();
+        $staff_id = $this->session->userdata('id');
+        $data['client_data'] = $this->CModel->get_details($staff_id);
         $data['template'] = 'modules/general_settings/show_client';
         $this->load->view('template/dashboard_template', $data);
     }
@@ -139,6 +143,9 @@ class User_management extends CI_Controller
 
     public function save_user()
     {
+        if ($this->session->userdata['id'] != ADMIN_MANAGER) {
+            redirect('error');
+        }
         $fname = $this->input->post('fname');
         $lname = $this->input->post('lname');
         $email = $this->input->post('email');
@@ -170,6 +177,9 @@ class User_management extends CI_Controller
     }
     public function edit_user()
     {
+        if ($this->session->userdata['id'] != ADMIN_MANAGER) {
+            redirect('error');
+        }
         // if ($this->input->is_ajax_request() == 1) {
         $onload =  $this->input->post('load');
         $user_id = $this->input->post('user_id');
@@ -191,7 +201,33 @@ class User_management extends CI_Controller
         // }
     }
 
-
+    public function update_password_admin()
+    {
+        $id = $this->session->userdata('id');
+        $password = md5($this->input->post('password'));
+        $data = array('password' => $password);
+        if ($this->UMModel->update_password_admin($id, $data)) {
+            echo json_encode(array('status' => 1));
+            return;
+        } else {
+            return false;
+        }
+    }
+    public function update_thumbnail()
+    {
+        $id = $this->session->userdata['id'];
+        $uploadPath = 'uploads';
+        $file_id = 'avatar';
+        $files_id = $this->fileUpload($uploadPath, $file_id);
+        $data['file'] = $files_id;
+        if ($this->UMModel->thumbnail_update($data, $id)) {
+            echo json_encode(array('status' => 1));
+            return;
+        } else {
+            echo json_encode(array('status' => 0));
+            return;
+        }
+    }
 
     public function edit_profile_self()
     {
@@ -259,8 +295,28 @@ class User_management extends CI_Controller
             }
         }
     }
+    public function update_logo()
+    {
+        $user_id = $this->session->userdata('id');
+        $uploadPath = 'uploads';
+        $uploadfile = 'company_logo';
+        $filename = $this->fileUpload($uploadPath, $uploadfile);
+        $company_logo = $filename;
+        if ($company_logo != '') {
+            $data['company_logo'] = $company_logo;
+            if ($this->UMModel->update_logo($data, $user_id)) {
+                echo json_encode(array('status' => 1, 'view' => $this->load->view('modules/general_settings/user_profile', $data, TRUE)));
+                return;
+            } else {
+                return false;
+            }
+        }
+    }
     public function update_user()
     {
+        if ($this->session->userdata['id'] != ADMIN_MANAGER) {
+            redirect('error');
+        }
         $user_id = $this->input->post('user_id');
         $fname = $this->input->post('fname');
         $lname = $this->input->post('lname');
