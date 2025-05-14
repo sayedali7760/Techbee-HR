@@ -54,7 +54,7 @@ var KTAppEcommerceReportSales = function () {
 
     // Hook export buttons
     var exportButtons = () => {
-        const documentTitle = 'Sales Report';
+        const documentTitle = 'Report';
         var buttons = new $.fn.dataTable.Buttons(table, {
             buttons: [
                 {

@@ -77,6 +77,8 @@ $route['user-management/client-show'] = 'settings/User_management/client_list';
 $route['user-management/edit-client'] = 'settings/User_management/edit_client';
 $route['user-management/update-client'] = 'settings/User_management/update_client';
 $route['user-management/change-password'] = 'settings/User_management/change_user_password';
+$route['user-management/update-logo'] = 'settings/User_management/update_logo';
+$route['admin-crm/update-thumbnail'] = 'settings/User_management/update_thumbnail';
 
 
 
@@ -84,6 +86,7 @@ $route['client/client-show'] = 'settings/Client_crm/show_client';
 $route['client/change_status'] = 'settings/Client_crm/change_status';
 $route['client/my-profile'] = 'settings/Client_crm/my_profile';
 $route['client-crm/update-password'] = 'settings/Client_crm/update_password';
+$route['admin-crm/update-password'] = 'settings/User_management/update_password_admin';
 $route['client-crm/upload-doc'] = 'settings/Client_crm/upload_doc';
 $route['client-crm/update-thumbnail'] = 'settings/Client_crm/update_thumbnail';
 
@@ -101,6 +104,13 @@ $route['client/applied-refund'] = 'settings/Payment/applied_refund';
 $route['client/approve-refund'] = 'settings/Payment/approve_refund';
 $route['client/reject-refund'] = 'settings/Payment/reject_refund';
 $route['client/view-refund'] = 'settings/Payment/view_refund';
+$route['client/get-staff-refund-details'] = 'settings/Payment/get_staff_refund_details';
+
+$route['client/payroll'] = 'settings/Payment/payroll';
+$route['client/payroll-payment-save'] = 'settings/Payment/payroll_payment_save';
+$route['client/payroll-added'] = 'settings/Payment/payroll_added';
+$route['client/client-salary-history'] = 'settings/Payment/client_salary_history';
+$route['client/show-bank-details-client'] = 'settings/Client_crm/show_bank_details_client';
 
 $route['task/scheule-task'] = 'settings/Task/schedule_task';
 $route['task/scheule-task-save'] = 'settings/Task/schedule_task_save';
@@ -109,13 +119,20 @@ $route['task/assigned-tasks'] = 'settings/Task/assigned_tasks';
 $route['task/change_status'] = 'settings/Task/change_status';
 $route['task/view-task'] = 'settings/Task/view_task';
 
+$route['leave/apply-leave'] = 'settings/Leave/apply_leave';
+$route['leave/leave-save'] = 'settings/Leave/apply_leave_save';
+$route['leave/applied-leave'] = 'settings/Leave/applied_leave';
+$route['leave/applied-leave-admin'] = 'settings/Leave/applied_leave_admin';
+$route['leave/approve-leave'] = 'settings/Leave/approve_leave';
+$route['leave/reject-leave'] = 'settings/Leave/reject_leave';
+
 
 $route['client/my-data'] = 'settings/Client_crm/my_data';
 $route['client/bdata-save'] = 'settings/Client_crm/bank_data';
 $route['client/wallet-save'] = 'settings/Client_crm/wallet_id';
 $route['client/show-bank-details'] = 'settings/Client_crm/show_bank_details';
-$route['client/reject_data'] = 'settings/Client_crm/reject_bank_data';
-$route['client/approve_data'] = 'settings/Client_crm/approve_bank_data';
+$route['client/reject-bank-data'] = 'settings/Client_crm/reject_bank_data';
+$route['client/approve-bank-data'] = 'settings/Client_crm/approve_bank_data';
 $route['mt/group_update'] = 'settings/Mt_Accounts/group_update';
 $route['mt/group_change'] = 'settings/Mt_Accounts/group_change';
 $route['login/forgot-password'] = 'Login/forgot_pwd';

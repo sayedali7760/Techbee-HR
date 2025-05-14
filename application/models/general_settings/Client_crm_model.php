@@ -19,14 +19,48 @@ class Client_crm_model extends CI_Model
     }
 
 
-    public function get_details()
+    public function get_details($staff_id)
     {
-        $this->db->select('c.*, d.account_verify,u.fname as manager,u.company_name as manager_company');
-        $this->db->from('clients AS c');
-        $this->db->join('documents AS d', 'd.client_id = c.id', 'left');
-        $this->db->join('user_details AS u', 'c.manager = u.id', 'left');
-        $this->db->order_by('c.id', "desc");
+        if ($this->session->userdata['id'] == ADMIN_MANAGER) {
+            $this->db->select('c.*, d.account_verify,u.fname as manager,u.company_name as manager_company');
+            $this->db->from('clients AS c');
+            $this->db->join('documents AS d', 'd.client_id = c.id', 'left');
+            $this->db->join('user_details AS u', 'c.manager = u.id', 'left');
+            $this->db->order_by('c.id', "desc");
+        } else {
+            $this->db->select('c.*, d.account_verify,u.fname as manager,u.company_name as manager_company');
+            $this->db->from('clients AS c');
+            $this->db->join('documents AS d', 'd.client_id = c.id', 'left');
+            $this->db->join('user_details AS u', 'c.manager = u.id', 'left');
+            $this->db->where('c.manager', $staff_id);
+            $this->db->order_by('c.id', "desc");
+        }
 
+
+        $query = $this->db->get()->result();
+        return $query;
+    }
+    public function staff_refund_details($staff_id, $start_date, $end_date)
+    {
+        $this->db->select('R.*');
+        $this->db->from('refund AS R');
+        $this->db->where('R.staff_id', $staff_id);
+        $this->db->where('R.date >=', $start_date);
+        $this->db->where('R.date <=', $end_date);
+        $this->db->order_by('R.id', "desc");
+        $query = $this->db->get()->result();
+        return $query;
+    }
+    public function get_staff_details($staff_id)
+    {
+        if ($this->session->userdata['id'] == ADMIN_MANAGER) {
+            $this->db->select('C.*');
+            $this->db->from('clients as C');
+        } else {
+            $this->db->select('C.*');
+            $this->db->from('clients as C');
+            $this->db->where('C.manager', $staff_id);
+        }
         $query = $this->db->get()->result();
         return $query;
     }
@@ -51,6 +85,7 @@ class Client_crm_model extends CI_Model
         $this->db->update('clients', $data, 'id=' . $id . '');
         return true;
     }
+
 
     public function add_client($data)
     {
@@ -136,14 +171,7 @@ class Client_crm_model extends CI_Model
         return true;
     }
 
-    public function get_wallet_details($id)
-    {
-        $this->db->from('wallet_address');
-        $this->db->where('client_id', $id);
-        $this->db->order_by('id', "desc");
-        $query = $this->db->get()->row_array();
-        return $query;
-    }
+
 
     public function get_bank_data($id)
     {
@@ -152,14 +180,23 @@ class Client_crm_model extends CI_Model
         $query = $this->db->get()->result_array();
         return $query;
     }
+    public function get_bank_details($id)
+    {
+        $this->db->from('bank_data');
+        $this->db->where('client_id', $id);
+        $this->db->where('status', 1);
+        $this->db->order_by('id', "desc");
+        $query = $this->db->get()->result_array();
+        return $query;
+    }
 
-    public function reject_data($client_id, $id)
+    public function reject_bank_data($client_id, $id)
     {
         $this->db->update('bank_data', ['status' => '2'], ['client_id' => $client_id, 'id' => $id]);
         return true;
     }
 
-    public function approve_data($client_id, $id)
+    public function approve_bank_data($client_id, $id)
     {
         $this->db->update('bank_data', ['status' => '1'], ['client_id' => $client_id, 'id' => $id]);
         return true;

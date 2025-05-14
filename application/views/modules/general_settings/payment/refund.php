@@ -192,6 +192,12 @@
                         text: 'Expense submitted.'
                     });
                     form.trigger("reset");
+                } else if (data.status == 3) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Failed',
+                        text: data.message || 'Salary already released.'
+                    });
                 } else {
                     Swal.fire({
                         icon: 'error',

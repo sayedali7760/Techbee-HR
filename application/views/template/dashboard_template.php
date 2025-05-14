@@ -18,18 +18,18 @@ License: For each use you must have a valid license purchased only from above li
     <title><?php echo APP_TITLE; ?></title>
     <meta charset="utf-8" />
     <meta name="description"
-        content="The most advanced Bootstrap Admin Theme on Themeforest trusted by 94,000 beginners and professionals. Multi-demo, Dark Mode, RTL support and complete React, Angular, Vue &amp; Laravel versions. Grab your copy now and get life-time updates for free." />
+        content="" />
     <meta name="keywords"
-        content="Metronic, bootstrap, bootstrap 5, Angular, VueJs, React, Laravel, admin themes, web design, figma, web development, free templates, free admin themes, bootstrap theme, bootstrap template, bootstrap dashboard, bootstrap dak mode, bootstrap button, bootstrap datepicker, bootstrap timepicker, fullcalendar, datatables, flaticon" />
+        content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:type" content="article" />
     <meta property="og:title"
-        content="Metronic - Bootstrap 5 HTML, VueJS, React, Angular &amp; Laravel Admin Dashboard Theme" />
+        content="" />
     <meta property="og:url" content="javascript:void(0);/metronic" />
-    <meta property="og:site_name" content="Keenthemes | Metronic" />
-    <link rel="canonical" href="https://preview.keenthemes.com/metronic8" />
-    <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/media/footer.png" />
+    <meta property="og:site_name" content="" />
+    <link rel="canonical" href="" />
+    <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/media/logos/favicon.ico" />
     <!--begin::Fonts-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
     <!--end::Fonts-->
@@ -194,36 +194,7 @@ License: For each use you must have a valid license purchased only from above li
 
                                         <!--end::Menu item-->
                                         <!--begin::Menu item-->
-                                        <div class="menu-item px-5">
-                                            <a href="" class="menu-link px-5">
-                                                <span class="menu-text">My Projects</span>
-                                                <span class="menu-badge">
-                                                    <span
-                                                        class="badge badge-light-danger badge-circle fw-bolder fs-7">3</span>
-                                                </span>
-                                            </a>
-                                        </div>
-                                        <!--end::Menu item-->
-                                        <!--begin::Menu item-->
 
-                                        <!--end::Menu item-->
-                                        <!--begin::Menu item-->
-                                        <div class="menu-item px-5">
-                                            <a href="../../demo8/dist/account/statements.html" class="menu-link px-5">My
-                                                Statements</a>
-                                        </div>
-                                        <!--end::Menu item-->
-                                        <!--begin::Menu separator-->
-                                        <div class="separator my-2"></div>
-                                        <!--end::Menu separator-->
-                                        <!--begin::Menu item-->
-
-                                        <!--end::Menu item-->
-                                        <!--begin::Menu item-->
-                                        <div class="menu-item px-5 my-1">
-                                            <a href="../../demo8/dist/account/settings.html"
-                                                class="menu-link px-5">Account Settings</a>
-                                        </div>
                                         <!--end::Menu item-->
                                         <!--begin::Menu item-->
                                         <div class="menu-item px-5">
@@ -434,21 +405,7 @@ License: For each use you must have a valid license purchased only from above li
                             <!--begin::Action group-->
                             <div class="d-flex align-items-stretch overflow-auto pt-3 pt-lg-0">
                                 <!--begin::Action wrapper-->
-                                <div class="d-flex align-items-center">
-                                    <!--begin::Label-->
-                                    <span class="fs-7 fw-bolder text-gray-700 pe-4 text-nowrap d-none d-xxl-block">Sort
-                                        By:</span>
-                                    <!--end::Label-->
-                                    <!--begin::Select-->
-                                    <select onchange="uder_construction()" class="form-select form-select-sm form-select-solid w-100px w-xxl-125px"
-                                        data-control="select2" data-placeholder="Latest" data-hide-search="true">
-                                        <option value=""></option>
-                                        <option value="1" selected="selected">Latest</option>
-                                        <option value="2">In Progress</option>
-                                        <option value="3">Done</option>
-                                    </select>
-                                    <!--end::Select-->
-                                </div>
+
                                 <!--end::Action wrapper-->
                                 <!--begin::Action wrapper-->
                                 <div class="d-flex align-items-center">
@@ -456,17 +413,14 @@ License: For each use you must have a valid license purchased only from above li
                                     <div class="bullet bg-secondary h-35px w-1px mx-5"></div>
                                     <!--end::Separartor-->
                                     <!--begin::Label-->
-                                    <span class="fs-7 text-gray-700 fw-bolder d-none d-sm-block">Impact
-                                        <span class="d-none d-xxl-inline">Level</span>:</span>
+                                    <span class="fs-7 text-gray-700 fw-bolder d-none d-sm-block">Premium</span>
                                     <!--end::Label-->
                                     <!--begin::NoUiSlider-->
                                     <div class="d-flex align-items-center ps-4" id="kt_toolbar">
-                                        <div id="kt_toolbar_slider"
-                                            class="noUi-target noUi-target-primary w-75px w-xxl-150px noUi-sm"></div>
-                                        <span id="kt_toolbar_slider_value"
-                                            class="d-flex flex-center bg-light-primary rounded-circle w-35px h-35px ms-4 fs-7 fw-bolder text-primary"
-                                            data-bs-toggle="tooltip" data-bs-placement="top"
-                                            title="Set impact level"></span>
+                                        <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
+                                                <path d="M10.0813 3.7242C10.8849 2.16438 13.1151 2.16438 13.9187 3.7242V3.7242C14.4016 4.66147 15.4909 5.1127 16.4951 4.79139V4.79139C18.1663 4.25668 19.7433 5.83365 19.2086 7.50485V7.50485C18.8873 8.50905 19.3385 9.59842 20.2758 10.0813V10.0813C21.8356 10.8849 21.8356 13.1151 20.2758 13.9187V13.9187C19.3385 14.4016 18.8873 15.491 19.2086 16.4951V16.4951C19.7433 18.1663 18.1663 19.7433 16.4951 19.2086V19.2086C15.491 18.8873 14.4016 19.3385 13.9187 20.2758V20.2758C13.1151 21.8356 10.8849 21.8356 10.0813 20.2758V20.2758C9.59842 19.3385 8.50905 18.8873 7.50485 19.2086V19.2086C5.83365 19.7433 4.25668 18.1663 4.79139 16.4951V16.4951C5.1127 15.491 4.66147 14.4016 3.7242 13.9187V13.9187C2.16438 13.1151 2.16438 10.8849 3.7242 10.0813V10.0813C4.66147 9.59842 5.1127 8.50905 4.79139 7.50485V7.50485C4.25668 5.83365 5.83365 4.25668 7.50485 4.79139V4.79139C8.50905 5.1127 9.59842 4.66147 10.0813 3.7242V3.7242Z" fill="#00A3FF" />
+                                                <path class="permanent" d="M14.8563 9.1903C15.0606 8.94984 15.3771 8.9385 15.6175 9.14289C15.858 9.34728 15.8229 9.66433 15.6185 9.9048L11.863 14.6558C11.6554 14.9001 11.2876 14.9258 11.048 14.7128L8.47656 12.4271C8.24068 12.2174 8.21944 11.8563 8.42911 11.6204C8.63877 11.3845 8.99996 11.3633 9.23583 11.5729L11.3706 13.4705L14.8563 9.1903Z" fill="white" />
+                                            </svg></span>
                                     </div>
                                     <!--end::NoUiSlider-->
                                     <!--begin::Separartor-->
@@ -507,11 +461,11 @@ License: For each use you must have a valid license purchased only from above li
                         <div class="text-dark order-2 order-md-1">
                             <span class="text-muted fw-bold me-1">2025©</span>
                             <a href="javascript:void(0);" target="_blank"
-                                class="text-gray-800 text-hover-primary">SmartFX</a>
+                                class="text-gray-800 text-hover-primary">TechBee Softwares.LLC</a>
                         </div>
                         <!--end::Copyright-->
                         <!--begin::Menu-->
-                        <ul class="menu menu-gray-600 menu-hover-primary fw-bold order-1">
+                        <!-- <ul class="menu menu-gray-600 menu-hover-primary fw-bold order-1">
                             <li class="menu-item">
                                 <a href="javascript:void(0);" target="_blank" class="menu-link px-2">About</a>
                             </li>
@@ -522,7 +476,7 @@ License: For each use you must have a valid license purchased only from above li
                                 <a href="javascript:void(0);" target="_blank"
                                     class="menu-link px-2">Purchase</a>
                             </li>
-                        </ul>
+                        </ul> -->
                         <!--end::Menu-->
                     </div>
                     <!--end::Container-->

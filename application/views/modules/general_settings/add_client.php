@@ -113,7 +113,7 @@
                                         </div>
 
                                         <div class="fv-row w-100 flex-md-root">
-                                            <label class="form-label">Phone No</label>
+                                            <label class="required form-label">Phone No</label>
                                             <input type="text" id="phone" name="phone"
                                                 class="form-control numeric mb-5" id=""
                                                 placeholder="Phone No" maxlength="12">

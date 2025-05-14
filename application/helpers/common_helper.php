@@ -27,7 +27,17 @@ function isLoggedin()
     else
         return 0;
 }
-
+function get_leave_type($data)
+{
+    $leave_types = [
+        1 => 'Casual Leave',
+        2 => 'Sick Leave',
+        3 => 'Annual Leave',
+        4 => 'Maternity Leave',
+        5 => 'Paternity Leave',
+    ];
+    return $leave_types[$data];
+}
 function check_permission($pageid, $operationid = NULL, $moduleid = NULL)
 {
     $CI = get_instance();

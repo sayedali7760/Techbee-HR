@@ -95,3 +95,40 @@ ERROR - 2025-04-28 10:46:29 --> Severity: Notice --> Trying to get property of n
 ERROR - 2025-04-28 10:46:29 --> Severity: Notice --> Undefined variable: task_details_single /Applications/MAMP/htdocs/Techbee-HR/application/views/modules/general_settings/payment/view_refund.php 54
 ERROR - 2025-04-28 10:46:29 --> Severity: Notice --> Trying to get property of non-object /Applications/MAMP/htdocs/Techbee-HR/application/views/modules/general_settings/payment/view_refund.php 54
 ERROR - 2025-04-28 10:50:28 --> Severity: Notice --> Undefined property: stdClass::$title /Applications/MAMP/htdocs/Techbee-HR/application/views/modules/general_settings/payment/view_refund.php 21
+ERROR - 2025-04-28 12:13:01 --> Severity: Notice --> Undefined variable: receipt /Applications/MAMP/htdocs/Techbee-HR/application/controllers/settings/Leave.php 40
+ERROR - 2025-04-28 12:54:11 --> Severity: Notice --> Undefined variable: refund_data /Applications/MAMP/htdocs/Techbee-HR/application/views/modules/general_settings/leave/applied_leave.php 115
+ERROR - 2025-04-28 12:54:11 --> Severity: Warning --> Invalid argument supplied for foreach() /Applications/MAMP/htdocs/Techbee-HR/application/views/modules/general_settings/leave/applied_leave.php 115
+ERROR - 2025-04-28 12:57:55 --> Severity: 4096 --> Object of class stdClass could not be converted to string /Applications/MAMP/htdocs/Techbee-HR/application/views/modules/general_settings/leave/applied_leave.php 117
+ERROR - 2025-04-28 12:57:55 --> Severity: Notice --> Undefined variable:  /Applications/MAMP/htdocs/Techbee-HR/application/views/modules/general_settings/leave/applied_leave.php 117
+ERROR - 2025-04-28 12:57:55 --> Severity: Notice --> Trying to get property of non-object /Applications/MAMP/htdocs/Techbee-HR/application/views/modules/general_settings/leave/applied_leave.php 117
+ERROR - 2025-04-28 12:57:55 --> Severity: Notice --> Undefined variable: refund /Applications/MAMP/htdocs/Techbee-HR/application/views/modules/general_settings/leave/applied_leave.php 130
+ERROR - 2025-04-28 12:57:55 --> Severity: Notice --> Trying to get property of non-object /Applications/MAMP/htdocs/Techbee-HR/application/views/modules/general_settings/leave/applied_leave.php 130
+ERROR - 2025-04-28 12:58:51 --> Severity: 4096 --> Object of class stdClass could not be converted to string /Applications/MAMP/htdocs/Techbee-HR/application/views/modules/general_settings/leave/applied_leave.php 117
+ERROR - 2025-04-28 12:58:51 --> Severity: Notice --> Undefined variable:  /Applications/MAMP/htdocs/Techbee-HR/application/views/modules/general_settings/leave/applied_leave.php 117
+ERROR - 2025-04-28 12:58:51 --> Severity: Notice --> Trying to get property of non-object /Applications/MAMP/htdocs/Techbee-HR/application/views/modules/general_settings/leave/applied_leave.php 117
+ERROR - 2025-04-28 12:58:51 --> Severity: Notice --> Undefined variable: refund /Applications/MAMP/htdocs/Techbee-HR/application/views/modules/general_settings/leave/applied_leave.php 130
+ERROR - 2025-04-28 12:58:51 --> Severity: Notice --> Trying to get property of non-object /Applications/MAMP/htdocs/Techbee-HR/application/views/modules/general_settings/leave/applied_leave.php 130
+ERROR - 2025-04-28 12:58:52 --> Severity: 4096 --> Object of class stdClass could not be converted to string /Applications/MAMP/htdocs/Techbee-HR/application/views/modules/general_settings/leave/applied_leave.php 117
+ERROR - 2025-04-28 12:58:52 --> Severity: Notice --> Undefined variable:  /Applications/MAMP/htdocs/Techbee-HR/application/views/modules/general_settings/leave/applied_leave.php 117
+ERROR - 2025-04-28 12:58:52 --> Severity: Notice --> Trying to get property of non-object /Applications/MAMP/htdocs/Techbee-HR/application/views/modules/general_settings/leave/applied_leave.php 117
+ERROR - 2025-04-28 12:58:52 --> Severity: Notice --> Undefined variable: refund /Applications/MAMP/htdocs/Techbee-HR/application/views/modules/general_settings/leave/applied_leave.php 130
+ERROR - 2025-04-28 12:58:52 --> Severity: Notice --> Trying to get property of non-object /Applications/MAMP/htdocs/Techbee-HR/application/views/modules/general_settings/leave/applied_leave.php 130
+ERROR - 2025-04-28 12:59:21 --> Severity: 4096 --> Object of class stdClass could not be converted to string /Applications/MAMP/htdocs/Techbee-HR/application/views/modules/general_settings/leave/applied_leave.php 117
+ERROR - 2025-04-28 12:59:21 --> Severity: Notice --> Undefined variable:  /Applications/MAMP/htdocs/Techbee-HR/application/views/modules/general_settings/leave/applied_leave.php 117
+ERROR - 2025-04-28 12:59:21 --> Severity: Notice --> Trying to get property of non-object /Applications/MAMP/htdocs/Techbee-HR/application/views/modules/general_settings/leave/applied_leave.php 117
+ERROR - 2025-04-28 12:59:21 --> Severity: Notice --> Undefined variable: refund /Applications/MAMP/htdocs/Techbee-HR/application/views/modules/general_settings/leave/applied_leave.php 130
+ERROR - 2025-04-28 12:59:21 --> Severity: Notice --> Trying to get property of non-object /Applications/MAMP/htdocs/Techbee-HR/application/views/modules/general_settings/leave/applied_leave.php 130
+ERROR - 2025-04-28 13:00:18 --> Severity: 4096 --> Object of class stdClass could not be converted to string /Applications/MAMP/htdocs/Techbee-HR/application/views/modules/general_settings/leave/applied_leave.php 117
+ERROR - 2025-04-28 13:00:18 --> Severity: Notice --> Undefined variable:  /Applications/MAMP/htdocs/Techbee-HR/application/views/modules/general_settings/leave/applied_leave.php 117
+ERROR - 2025-04-28 13:00:18 --> Severity: Notice --> Trying to get property of non-object /Applications/MAMP/htdocs/Techbee-HR/application/views/modules/general_settings/leave/applied_leave.php 117
+ERROR - 2025-04-28 13:00:18 --> Severity: Notice --> Undefined property: stdClass::$approved /Applications/MAMP/htdocs/Techbee-HR/application/views/modules/general_settings/leave/applied_leave.php 130
+ERROR - 2025-04-28 13:00:49 --> Severity: 4096 --> Object of class stdClass could not be converted to string /Applications/MAMP/htdocs/Techbee-HR/application/views/modules/general_settings/leave/applied_leave.php 117
+ERROR - 2025-04-28 13:00:49 --> Severity: Notice --> Undefined variable:  /Applications/MAMP/htdocs/Techbee-HR/application/views/modules/general_settings/leave/applied_leave.php 117
+ERROR - 2025-04-28 13:00:49 --> Severity: Notice --> Trying to get property of non-object /Applications/MAMP/htdocs/Techbee-HR/application/views/modules/general_settings/leave/applied_leave.php 117
+ERROR - 2025-04-28 13:02:16 --> Severity: 4096 --> Object of class stdClass could not be converted to string /Applications/MAMP/htdocs/Techbee-HR/application/views/modules/general_settings/leave/applied_leave.php 117
+ERROR - 2025-04-28 13:02:16 --> Severity: Notice --> Undefined variable:  /Applications/MAMP/htdocs/Techbee-HR/application/views/modules/general_settings/leave/applied_leave.php 117
+ERROR - 2025-04-28 13:02:16 --> Severity: Notice --> Trying to get property of non-object /Applications/MAMP/htdocs/Techbee-HR/application/views/modules/general_settings/leave/applied_leave.php 117
+ERROR - 2025-04-28 13:37:04 --> Query error: Table 'techbee_hr.client' doesn't exist - Invalid query: SELECT `lm`.*
+FROM `leave_management` `lm`
+LEFT JOIN `client` `c` ON `c`.`id` = `lm`.`staff_id`
+WHERE `c`.`manager` = '24'

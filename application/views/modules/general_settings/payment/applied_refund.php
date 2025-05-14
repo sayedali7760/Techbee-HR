@@ -100,6 +100,8 @@
                                 <th class="min-w-100px">Staff Id</th>
                                 <th class="text-start min-w-75px">Name</th>
                                 <th class="text-strat min-w-75px">Amount</th>
+                                <th class="text-strat min-w-75px">Created On</th>
+                                <th class="text-strat min-w-75px">Date</th>
                                 <th class="text-strat min-w-75px">Receipt</th>
                                 <th class="text-start min-w-75px">Status</th>
                                 <th class="text-start min-w-75px">Action</th>
@@ -118,6 +120,8 @@
                                     <td><?php echo $refund->id; ?></td>
                                     <td class="text-start pe-0"><b><a href="javascript:void(0);" style="color: inherit;" onclick="edit_client('<?php echo $refund->id; ?>')"><?php echo $refund->staff_name; ?></a></b></td>
                                     <td class="text-start pe-0"><?php echo number_format($refund->amount, 2); ?></td>
+                                    <td class="text-start pe-0"><?php echo date('d-m-Y', strtotime($refund->created_on)); ?></td>
+                                    <td class="text-start pe-0"><?php echo date('d-m-Y', strtotime($refund->date)); ?></td>
                                     <td class="text-start pe-0">
                                         <a title="Download" target="_blank" href="<?php echo base_url() ?>uploads/<?php echo $refund->file; ?>" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
                                             <span class="svg-icon svg-icon-primary svg-icon-2hx"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
